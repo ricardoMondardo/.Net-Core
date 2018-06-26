@@ -17,8 +17,10 @@ namespace WebApi.Repository
             _context = context;
             _dbSet = context.Set<TEntity>();
         }
-      
 
+        #region Async
+
+        #region Return
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _context.Set<TEntity>().ToListAsync();
@@ -33,7 +35,13 @@ namespace WebApi.Repository
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }
+        #endregion
 
+        #endregion
+
+        #region Sync
+
+        #region Sync Return Something
         public TEntity Get(int id)
         {
             return _context.Set<TEntity>().Find(id);
@@ -44,9 +52,14 @@ namespace WebApi.Repository
             return _context.Set<TEntity>().Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public List<TEntity> GetAll()
         {
             return _context.Set<TEntity>().ToList();
+        }
+
+        public int Count()
+        {
+            return _context.Set<TEntity>().Count();
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
@@ -58,7 +71,9 @@ namespace WebApi.Repository
         {
             return _context.Set<TEntity>().SingleOrDefault(predicate);
         }
+        #endregion
 
+        #region Sync Change Something
         public void Add(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);            
@@ -79,5 +94,8 @@ namespace WebApi.Repository
         {
             _context.Set<TEntity>().RemoveRange(entities);
         }
+        #endregion
+
+        #endregion
     }
 }

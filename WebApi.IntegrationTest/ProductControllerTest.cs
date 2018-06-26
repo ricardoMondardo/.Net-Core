@@ -8,19 +8,21 @@ using Xunit;
 
 namespace WebApi.IntegrationTest
 {
-    public class TestableControllerTest
+    public class ProductControllerTest
     {
 
         [Fact]
-        public async Task TestGetAll()
+        public async Task TestCount()
         {
             using (var client = new ClienteProvider().Client)
             {
-                var response = await client.GetAsync("/api/Testable");
+                var response = await client.GetAsync("/api/Product/Count");
 
                 response.EnsureSuccessStatusCode();
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                //Chech the cound
             }
 
         }
@@ -30,13 +32,15 @@ namespace WebApi.IntegrationTest
         {
             using (var client = new ClienteProvider().Client)
             {
-                var response = await client.PostAsync("/api/Testable"
+                var response = await client.PostAsync("/api/Product/Post"
                     , new StringContent(JsonConvert.SerializeObject(new Product() { Id= 1, Description= "Test"}), Encoding.UTF8, "application/json" )
                     );
 
                 response.EnsureSuccessStatusCode();
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                //Check when the model is wrong...
             }
         }
     }

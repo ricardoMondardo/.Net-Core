@@ -30,9 +30,13 @@ namespace WebApi.Repository
             _context.SaveChanges();
         }
 
-        public async Task SaveAsync()
+        public async Task<int> SaveAsync()
         {
-            await _context.SaveChangesAsync();
+            int rowsAffected = 0;
+
+            rowsAffected = await _context.SaveChangesAsync();
+
+            return rowsAffected;
         }
 
         public void Dispose()

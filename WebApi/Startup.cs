@@ -30,8 +30,6 @@ namespace WebApi
             //    options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<UnitOfWork>();
-
-            services.AddTransient<ITestableService, TestableService>();
             services.AddTransient<IProductService, ProductService>();
 
             services.AddMvc();
@@ -49,7 +47,7 @@ namespace WebApi
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("MVC could not found anything.");
+                await context.Response.WriteAsync("MVC could not found anything!");
             });
         }
     }
