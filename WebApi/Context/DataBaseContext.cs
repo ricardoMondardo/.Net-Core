@@ -10,6 +10,8 @@ namespace WebApi.Repository
         {
         }
 
-        public DbSet<Image> Gallery { get; set; }
+
+
+        public DbSet<Product> Product { get; set; }
     }
 }

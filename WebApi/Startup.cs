@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using WebApi.Repository;
 using WebApi.Services;
 
@@ -12,12 +12,27 @@ namespace WebApi
     public class Startup
     {
 
+        private IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataBaseContext>(options => options.UseInMemoryDatabase("foo"));
+
+            services.AddDbContext<DataBaseContext>(options =>
+                options.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddDbContext<DataBaseContext>(options => 
+            //    options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<UnitOfWork>();
-            services.AddSingleton<ITestableService, TestableService>();
+
+            services.AddTransient<ITestableService, TestableService>();
+            services.AddTransient<IProductService, ProductService>();
 
             services.AddMvc();
         }
@@ -34,7 +49,7 @@ namespace WebApi
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("MVC could not found anything.");
             });
         }
     }

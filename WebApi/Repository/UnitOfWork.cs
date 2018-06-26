@@ -13,15 +13,15 @@ namespace WebApi.Repository
             _context = context;
         }
 
-        private Repository<Image> _image;
+        private Repository<Product> _products;
 
-        public Repository<Image> Image
+        public Repository<Product> Products
         {
             get
             {
-                if (this._image == null)
-                    this._image = new Repository<Image>(_context);
-                return this._image;
+                if (this._products == null)
+                    this._products = new Repository<Product>(_context);
+                return this._products;
             }
         }
 
