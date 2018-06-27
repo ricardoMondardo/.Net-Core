@@ -7,7 +7,7 @@ using WebApi.Services;
 namespace WebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]/[action]/{id?}")]
+    [Route("api/[controller]/[action]")]
     public class ProductController : ControllerBase
     {
         private IProductService _productService;
@@ -21,9 +21,9 @@ namespace WebApi.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(Product))]
         [ProducesResponseType(404)] // IActionResult, because can have multiple return
-        public async Task<IActionResult> GetAsync(int id)
+        public async Task<IActionResult> GetAsync(int param)
         {
-            var result = await _productService.GetAsync(id);
+            var result = await _productService.GetAsync(param);
 
             if (result == null)
             {
@@ -52,21 +52,13 @@ namespace WebApi.Controllers
             return _productService.GetAll();
         }
 
-        [HttpGet]
-        public List<Product> Get()
-        {
-            return _productService.GetAll();
-        }
-
-        [HttpGet("{qt}")]
+        [HttpGet("{qt:int}")]
         public List<Product> GetLatest(int qt)
         {
-            var x = qt;
-
             return _productService.GetAll();
         }
 
-        [HttpGet]
+        [HttpGet("{id:int}")]
         [ProducesResponseType(200, Type = typeof(Product))]
         [ProducesResponseType(404)] // IActionResult, because can have multiple return
         public IActionResult Get(int id)
