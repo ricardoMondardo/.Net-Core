@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Repository
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IGerericRepository<TEntity> where TEntity : class
     {
         Task<TEntity> GetAsync(int id);
         Task<IEnumerable<TEntity>> GetAllAsync();

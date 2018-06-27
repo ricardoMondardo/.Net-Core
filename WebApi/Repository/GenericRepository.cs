@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace WebApi.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGerericRepository<TEntity> where TEntity : class
     {
         private DataBaseContext _context;
         private DbSet<TEntity> _dbSet;
 
-        public Repository(DataBaseContext context)
+        public GenericRepository(DataBaseContext context)
         {
             _context = context;
             _dbSet = context.Set<TEntity>();

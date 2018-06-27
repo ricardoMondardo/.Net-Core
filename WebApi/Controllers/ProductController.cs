@@ -58,6 +58,12 @@ namespace WebApi.Controllers
             return _productService.GetAll();
         }
 
+        [HttpGet]
+        public List<Product> GetAllIsUseTrue()
+        {
+            return _productService.GetAllIsUseTrue();
+        }
+
         [HttpGet("{id:int}")]
         [ProducesResponseType(200, Type = typeof(Product))]
         [ProducesResponseType(404)] // IActionResult, because can have multiple return
@@ -75,6 +81,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(200, Type = typeof(Product))]
         public IActionResult Post([FromBody] Product obj)
         {
             if(!ModelState.IsValid)
@@ -84,7 +91,8 @@ namespace WebApi.Controllers
 
             _productService.Add(obj);
 
-            return CreatedAtAction(nameof(Get), new { id = obj.Id }, obj);
+            //Firs and second param => headers
+            return CreatedAtAction(nameof(Get), new { id = obj.Id }, obj.Description ); 
         }
         #endregion
         #endregion

@@ -8,7 +8,7 @@ namespace WebApi.Repository
 {
     public interface IUnitOfWork
     {
-        IRepository<Product> Products { get; }
+        IGerericRepository<Product> Products { get; }
 
         void Save();
         Task<int> SaveAsync();

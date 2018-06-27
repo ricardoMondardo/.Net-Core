@@ -32,6 +32,16 @@ namespace WebApi.Services
         {
             return _unitOfWork.Products.GetAll();
         }
+
+        public List<Product> GetLatest(int qt)
+        {
+            return _unitOfWork.Products.GetAll();
+        }
+
+        public List<Product> GetAllIsUseTrue()
+        {
+            return _unitOfWork.Products.Find(p => p.IsUse == true).ToList();
+        }
         #endregion
 
         #region Change Something

@@ -13,14 +13,14 @@ namespace WebApi.Repository
             _context = context;
         }
 
-        private IRepository<Product> _products;
+        private IGerericRepository<Product> _products;
 
-        public IRepository<Product> Products
+        public IGerericRepository<Product> Products
         {
             get
             {
                 if (this._products == null)
-                    this._products = new Repository<Product>(_context);
+                    this._products = new GenericRepository<Product>(_context);
                 return this._products;
             }
         }

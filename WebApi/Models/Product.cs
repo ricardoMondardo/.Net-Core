@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApi.Models
 {
@@ -12,5 +9,15 @@ namespace WebApi.Models
 
         [MaxLength(100)]
         public string Description { get; set; }
+
+        public bool IsUse { get; set; }
+        
+        public int? ProductGradeId { get; set; }
+        public ProductGrade ProductGrade { get; set; }
+
+        public ProductDetail ProductDetail { get; set; } //one-to-one
+
+        public ICollection<ProdutItem> ProdutItens { get; set; }
+
     }
 }

@@ -13,25 +13,21 @@ namespace WebApi.IntegrationTest
     public class ProductControllerTest
     {
 
+        private Mock<IGerericRepository<Product>> _mockRepo = new Mock<IGerericRepository<Product>>();
+        private Mock<IUnitOfWork>  _mockUnit = new Mock<IUnitOfWork>();
+
         [Fact]
         public void Test_GetLastestFive()
         {
+            _mockRepo.Setup(foo => foo.GetAll()).Returns(Seed());
+            _mockUnit.Setup(foo => foo.Products).Returns(_mockRepo.Object);
 
-            var mockRepo = new Mock<IRepository<Product>>();
-            var mockUnit = new Mock<IUnitOfWork>();
-
-            mockRepo.Setup(foo => foo.GetAll()).Returns(Seed());
-            mockUnit.Setup(foo => foo.Products).Returns(mockRepo.Object);
-
-            var productService = new ProductService(mockUnit.Object);
+            var productService = new ProductService(_mockUnit.Object);
 
             var ctor = new ProductController(productService);
             var resul = ctor.GetLatest(5);
 
             Assert.Equal(5, resul.Count);
-
-            //Check result and responses....
-
         }
 
         [Fact]
