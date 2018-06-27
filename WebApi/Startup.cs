@@ -27,9 +27,9 @@ namespace WebApi
                 options.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
 
             //services.AddDbContext<DataBaseContext>(options => 
-            //    options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
+            //    options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));            
 
-            services.AddScoped<UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IProductService, ProductService>();
 
             services.AddMvc();

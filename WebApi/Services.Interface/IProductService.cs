@@ -11,8 +11,9 @@ namespace WebApi.Services
         Task<Product> GetAsync(int id);
 
         void Add(Product product);
-        Product Get(int id);
-        List<Product> GetAll();
         int Count();
+
+        Product Get(int id);
+        List<Product> GetAll();        
     }
 }

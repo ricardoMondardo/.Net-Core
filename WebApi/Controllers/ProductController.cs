@@ -53,6 +53,20 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        public List<Product> Get()
+        {
+            return _productService.GetAll();
+        }
+
+        [HttpGet("{qt}")]
+        public List<Product> GetLatest(int qt)
+        {
+            var x = qt;
+
+            return _productService.GetAll();
+        }
+
+        [HttpGet]
         [ProducesResponseType(200, Type = typeof(Product))]
         [ProducesResponseType(404)] // IActionResult, because can have multiple return
         public IActionResult Get(int id)

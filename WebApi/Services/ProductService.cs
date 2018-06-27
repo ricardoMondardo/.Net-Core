@@ -9,8 +9,8 @@ namespace WebApi.Services
 {
     public class ProductService : IProductService
     {
-        private UnitOfWork _unitOfWork;
-        public ProductService(UnitOfWork unitOfWork)
+        private IUnitOfWork _unitOfWork;
+        public ProductService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

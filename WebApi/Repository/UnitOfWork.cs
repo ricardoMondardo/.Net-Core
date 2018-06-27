@@ -4,7 +4,7 @@ using WebApi.Models;
 
 namespace WebApi.Repository
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private DataBaseContext _context;
 
@@ -13,9 +13,9 @@ namespace WebApi.Repository
             _context = context;
         }
 
-        private Repository<Product> _products;
+        private IRepository<Product> _products;
 
-        public Repository<Product> Products
+        public IRepository<Product> Products
         {
             get
             {
@@ -39,21 +39,24 @@ namespace WebApi.Repository
             return rowsAffected;
         }
 
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
         public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
-
-        #region EnsureCreated and Delete for tests goals
-        public void EnsureCreated()
-        {
-            _context.Database.EnsureCreated();
-        }
-
-        public void EnsureDelete()
-        {
-            _context.Database.EnsureDeleted();
-        }
-        #endregion
     }
 }
