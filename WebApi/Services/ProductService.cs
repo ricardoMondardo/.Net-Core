@@ -15,9 +15,6 @@ namespace WebApi.Services
             _unitOfWork = unitOfWork;
         }
 
-        #region Sync
-
-        #region Return Something
         public int Count()
         {
             return _unitOfWork.Products.Count();
@@ -26,6 +23,12 @@ namespace WebApi.Services
         public Product Get(int id)
         {
             return _unitOfWork.Products.Get(id);
+        }
+
+        public Product GetWithIncludes(int id)
+        {
+            return _unitOfWork.Products.Find( x => x.Id == id, x => x.ProductDetail, x => x.ProductGrade, x => x.ProdutItens)
+                .FirstOrDefault();
         }
 
         public List<Product> GetAll()
@@ -41,33 +44,18 @@ namespace WebApi.Services
         public List<Product> GetAllIsUseTrue()
         {
             return _unitOfWork.Products.Find(p => p.IsUse == true).ToList();
-        }
-        #endregion
-
-        #region Change Something
+        }        
+        
         public void Add(Product obj)
         {
             _unitOfWork.Products.Add(obj);
             _unitOfWork.Save();
         }
-        #endregion
-
-        #endregion
-
-        #region Async
-
-        #region Return
+        
         public async Task<Product> GetAsync(int id)
         {
             return await _unitOfWork.Products.GetAsync(id);
-        }
-        #endregion
-
-        #region Change
-        #endregion
-
-
-        #endregion
+        }        
 
     }
 }

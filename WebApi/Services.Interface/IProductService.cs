@@ -14,8 +14,11 @@ namespace WebApi.Services
         int Count();
 
         Product Get(int id);
+        Product GetWithIncludes(int id);
+
         List<Product> GetAll();
         List<Product> GetLatest(int qt);
         List<Product> GetAllIsUseTrue();
+        
     }
 }

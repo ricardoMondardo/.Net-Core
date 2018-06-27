@@ -18,9 +18,6 @@ namespace WebApi.Repository
             _dbSet = context.Set<TEntity>();
         }
 
-        #region Async
-
-        #region Return
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _context.Set<TEntity>().ToListAsync();
@@ -35,19 +32,8 @@ namespace WebApi.Repository
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }
-        #endregion
 
-        #endregion
-
-        #region Sync
-
-        #region Sync Return Something
         public TEntity Get(int id)
-        {
-            return _context.Set<TEntity>().Find(id);
-        }
-
-        public TEntity Get(string id)
         {
             return _context.Set<TEntity>().Find(id);
         }
@@ -62,18 +48,22 @@ namespace WebApi.Repository
             return _context.Set<TEntity>().Count();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>().Where(predicate);
+        }
+
+        public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
+        {
+            var query = _context.Set<TEntity>().Where(predicate);
+            return includes.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
 
         public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>().SingleOrDefault(predicate);
         }
-        #endregion
-
-        #region Sync Change Something
+        
         public void Add(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);            
@@ -94,8 +84,5 @@ namespace WebApi.Repository
         {
             _context.Set<TEntity>().RemoveRange(entities);
         }
-        #endregion
-
-        #endregion
     }
 }

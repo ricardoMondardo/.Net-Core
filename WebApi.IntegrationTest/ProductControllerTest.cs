@@ -1,6 +1,4 @@
-using Newtonsoft.Json;
 using Moq;
-using System.Threading.Tasks;
 using Xunit;
 using WebApi.Services;
 using WebApi.Models;
