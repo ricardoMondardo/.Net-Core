@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Swashbuckle.AspNetCore.Swagger;
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -26,8 +28,19 @@ namespace WebApi
             services.AddDbContext<DataBaseContext>(options =>
                 options.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddDbContext<DataBaseContext>(options => 
-            //    options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));            
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info {
+                    Title = "My API",
+                    Version = "v1",
+                    Description = "In progress",
+                    Contact = new Contact
+                    {
+                        Name = "Ricardo Brina Mondardo",
+                        Email = "ricardo9300@gmail.com"
+                    }
+                });
+            });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IProductService, ProductService>();
@@ -42,6 +55,15 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseMvc();
 
