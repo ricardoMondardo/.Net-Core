@@ -10,7 +10,7 @@ namespace WebApi.Models
         [MaxLength(100)]
         public string Description { get; set; }
 
-        public bool IsUse { get; set; }
+        public bool Active { get; set; }
         
         public int? ProductGradeId { get; set; }
         public ProductGrade ProductGrade { get; set; }

@@ -8,6 +8,7 @@ namespace WebApi
     {
         public static void Main(string[] args)
         {
+
             BuildWebHost(args)
                 .MigrateDatabase()
                 .Run();

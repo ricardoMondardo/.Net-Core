@@ -6,12 +6,10 @@ using WebApi.Models;
 
 namespace WebApi.Dtos
 {
-    public class ProductDetailDTO
+    public class ProductInvoicesDTO
     {
-        public int Id { get; set; }        
-        public string Description { get; set; }
-        public string MadeFor { get; set; }
-        public string Gride { get; set; }
+        public ProductDetail ProductDetail { get; set; }
+        public ProductGrade ProductGrade { get; set; }
         public IList<ProductItemDTO> ProdutItems { get; set; }
     }
 }

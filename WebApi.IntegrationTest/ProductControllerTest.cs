@@ -15,17 +15,17 @@ namespace WebApi.IntegrationTest
         private Mock<IUnitOfWork>  _mockUnit = new Mock<IUnitOfWork>();
 
         [Fact]
-        public void Test_GetLastestFive()
+        public void Test_Get_Product()
         {
-            _mockRepo.Setup(foo => foo.GetAll()).Returns(Seed());
+            _mockRepo.Setup(foo => foo.Get(1)).Returns(new Product() { Id = 1, Description = "Abc" });
             _mockUnit.Setup(foo => foo.Products).Returns(_mockRepo.Object);
 
             var productService = new ProductService(_mockUnit.Object);
 
             var ctor = new ProductController(productService);
-            var resul = ctor.GetLatest(5);
+            var resul = ctor.Product(1);
 
-            Assert.Equal(5, resul.Count);
+            //Assert.Equal(5, null);
         }
 
         [Fact]

@@ -25,7 +25,7 @@ namespace WebApi.Services
             return _unitOfWork.Products.Get(id);
         }
 
-        public Product GetWithIncludes(int id)
+        public Product GetInvoices(int id)
         {
             return _unitOfWork.Products.Find( x => x.Id == id, x => x.ProductDetail, x => x.ProductGrade, x => x.ProdutItens)
                 .FirstOrDefault();
@@ -34,17 +34,7 @@ namespace WebApi.Services
         public List<Product> GetAll()
         {
             return _unitOfWork.Products.GetAll();
-        }
-
-        public List<Product> GetLatest(int qt)
-        {
-            return _unitOfWork.Products.GetAll();
-        }
-
-        public List<Product> GetAllIsUseTrue()
-        {
-            return _unitOfWork.Products.Find(p => p.IsUse == true).ToList();
-        }        
+        }    
         
         public void Add(Product obj)
         {
