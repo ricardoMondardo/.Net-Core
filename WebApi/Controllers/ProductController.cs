@@ -33,23 +33,6 @@ namespace WebApi.Controllers
         {
             _productService = productService;
             _urlHelper = urlHelper;
-
-            List<Product> products = new List<Product>()
-            {
-                new Product() { Description = "abc", Active = true },
-                new Product() { Description = "bca", Active = false },
-                new Product() { Description = "bcba", Active = false },
-                new Product() { Description = "dcba", Active = false },
-                new Product() { Description = "rcba", Active = false },
-                new Product() { Description = "xcba", Active = false },
-                new Product() { Description = "hcba", Active = false },
-                new Product() { Description = "ecba", Active = false },
-                new Product() { Description = "wcba", Active = false },
-                new Product() { Description = "qcba", Active = false }
-            };
-
-            //_productService.Add(products);
-
         }
 
         [HttpGet("products", Name = "products")]
