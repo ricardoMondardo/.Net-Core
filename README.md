@@ -4,6 +4,7 @@
 
 - UnitOfWork
 - Generic Repository
+- Entity Framework Core
 - Semantic best practices
 - Consistent HTTP status codes
 - DTOs to move data back
