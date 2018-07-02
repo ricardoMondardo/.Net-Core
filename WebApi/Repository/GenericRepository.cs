@@ -48,6 +48,11 @@ namespace WebApi.Repository
             return _context.Set<TEntity>().Count();
         }
 
+        public IQueryable<TEntity> Find()
+        {
+            return _context.Set<TEntity>();
+        }
+
         public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>().Where(predicate);

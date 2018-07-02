@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Helpers.Pagging;
 using WebApi.Models;
 
 namespace WebApi.Services
@@ -17,6 +18,7 @@ namespace WebApi.Services
         Product GetInvoices(int id);
 
         List<Product> GetAll();
-        
+        PagedList<Product> GetAll(PagingParams pagingParams);
+
     }
 }

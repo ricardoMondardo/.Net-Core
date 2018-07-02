@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AspNetCore.IServiceCollection.AddIUrlHelper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 using WebApi.Repository;
 using WebApi.Services;
 
@@ -11,7 +16,7 @@ namespace WebApi
     public class Startup
     {
 
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration)
         {
@@ -22,16 +27,23 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddDbContext<DataBaseContext>(options =>
-            //    options.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
+           //services.AddDbContext<DataBaseContext>(options =>
+          //     options. UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<DataBaseContext>(options =>
                 options.UseInMemoryDatabase("foo"));
-
+            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IProductService, ProductService>();
 
-            services.AddMvc();
+            services.AddUrlHelper();
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.ContractResolver =
+                        new CamelCasePropertyNamesContractResolver();
+                });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -43,7 +55,6 @@ namespace WebApi
             }
 
             app.UseStaticFiles();
-
             app.UseMvc();
 
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Dtos;
+using WebApi.Helpers.Pagging;
 using WebApi.Models;
 using WebApi.Services;
 
@@ -25,20 +26,39 @@ namespace WebApi.Controllers
          */
 
         private IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IUrlHelper _urlHelper;
+
+        public ProductController(IProductService productService, IUrlHelper urlHelper)
         {
             _productService = productService;
+            _urlHelper = urlHelper;
         }
 
+        /*
         [HttpGet("products")]
         public List<ProductDTO> Products()
         {
-            return _productService.GetAll().Select( p => new ProductDTO() {
-                Id = p.Id,
-                Description = p.Description
-            }).ToList();
+            return _productService.GetAll().Select( p => ToConvertDTO(p)).ToList();
         }
-        
+        */
+
+        [HttpGet("products", Name = "products")]
+        public IActionResult Products(PagingParams pagingParams)
+        {
+            var model = _productService.GetAll(pagingParams);
+
+            Response.Headers.Add("X-Pagination", model.GetHeader().ToJson());
+
+            var outputModel = new
+            {
+                Paging = model.GetHeader(),
+                Links = GetLinks(model),
+                Items = model.List.Select(m => ToConvertDTO(m)).ToList(),
+            };
+            return Ok(outputModel);
+        }
+
+        #region I am not working on rigth now
         [HttpGet("product/{id}")]
         [ProducesResponseType(200, Type = typeof(ProductDTO))]
         [ProducesResponseType(404)] 
@@ -52,11 +72,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
 
-            return Ok(new ProductDTO()
-            {
-                Id = product.Id,
-                Description = product.Description
-            });
+            return Ok(ToConvertDTO(product));
         }
 
         [HttpGet("product/{id}/invoices")]  //Change to Async
@@ -95,11 +111,7 @@ namespace WebApi.Controllers
 
             _productService.Add(obj);
 
-            return CreatedAtAction(nameof(Product), new { id = obj.Id }, new ProductDTO()
-            {
-                Id = obj.Id,
-                Description = obj.Description
-            }); 
+            return CreatedAtAction(nameof(Product), new { id = obj.Id }, ToConvertDTO(obj)); 
         }
 
         [HttpPut("product")]
@@ -114,6 +126,44 @@ namespace WebApi.Controllers
             }
 
             return Ok(obj);
+        }
+        #endregion
+
+        private List<LinkInfo> GetLinks(PagedList<Product> list)
+        {
+            var links = new List<LinkInfo>();
+
+            if (list.HasPreviousPage)
+                links.Add(CreateLink("products", list.PreviousPageNumber, list.PageSize, "previousPage", "GET"));
+
+            links.Add(CreateLink("products", list.PageNumber, list.PageSize, "self", "GET"));
+
+            if (list.HasNextPage)
+                links.Add(CreateLink("products", list.NextPageNumber, list.PageSize, "nextPage", "GET"));
+
+            return links;
+        }
+
+        private LinkInfo CreateLink(
+            string routeName, int pageNumber, int pageSize,
+            string rel, string method)
+        {
+            return new LinkInfo
+            {
+                Href = _urlHelper.Link(routeName,
+                            new { PageNumber = pageNumber, PageSize = pageSize }),
+                Rel = rel,
+                Method = method
+            };
+        }
+
+        private ProductDTO ToConvertDTO(Product obj)
+        {
+            return new ProductDTO()
+            {
+                Description = obj.Description,
+                Active = obj.Active
+            };
         }
 
     }

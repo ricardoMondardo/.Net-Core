@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Helpers.Pagging;
 using WebApi.Models;
 using WebApi.Repository;
 
@@ -45,7 +46,14 @@ namespace WebApi.Services
         public async Task<Product> GetAsync(int id)
         {
             return await _unitOfWork.Products.GetAsync(id);
-        }        
+        }
+
+        public PagedList<Product> GetAll(PagingParams pagingParams)
+        {
+            var query = _unitOfWork.Products.Find().AsQueryable();
+            return new PagedList<Product>(
+                query, pagingParams.PageNumber, pagingParams.PageSize);
+        }
 
     }
 }
