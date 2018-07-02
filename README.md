@@ -10,6 +10,12 @@
 - Consistent HTTP status codes
 - DTOs to move data back
 - Separation of concerns
+- and More ....
+
+- To Do
+
 - Unit Test and Integration Test (Loading...)
 - Documentation (Loading...)
-- and More ....
+- Authentication and Authorization 
+- Versioning
+
