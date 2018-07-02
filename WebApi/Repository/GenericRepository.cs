@@ -10,7 +10,7 @@ namespace WebApi.Repository
     public class GenericRepository<TEntity> : IGerericRepository<TEntity> where TEntity : class
     {
         private DataBaseContext _context;
-        private DbSet<TEntity> _dbSet;
+        private readonly DbSet<TEntity> _dbSet;
 
         public GenericRepository(DataBaseContext context)
         {

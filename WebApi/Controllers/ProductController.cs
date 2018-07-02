@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Dtos;
+using WebApi.Dtos.Commons;
 using WebApi.Helpers.Pagging;
 using WebApi.Models;
 using WebApi.Services;
@@ -32,24 +33,34 @@ namespace WebApi.Controllers
         {
             _productService = productService;
             _urlHelper = urlHelper;
-        }
 
-        /*
-        [HttpGet("products")]
-        public List<ProductDTO> Products()
-        {
-            return _productService.GetAll().Select( p => ToConvertDTO(p)).ToList();
+            List<Product> products = new List<Product>()
+            {
+                new Product() { Id = 1, Description = "abc", Active = true },
+                new Product() { Id = 2, Description = "bca", Active = false },
+                new Product() { Id = 3, Description = "bcba", Active = false },
+                new Product() { Id = 4, Description = "dcba", Active = false },
+                new Product() { Id = 5, Description = "rcba", Active = false },
+                new Product() { Id = 6, Description = "xcba", Active = false },
+                new Product() { Id = 7, Description = "hcba", Active = false },
+                new Product() { Id = 8, Description = "ecba", Active = false },
+                new Product() { Id = 9, Description = "wcba", Active = false },
+                new Product() { Id = 10, Description = "qcba", Active = false }
+            };
+
+            _productService.Add(products);
+
         }
-        */
 
         [HttpGet("products", Name = "products")]
+        [ProducesResponseType(200, Type = typeof(PagedList<ProductDTO>))]
         public IActionResult Products(PagingParams pagingParams)
         {
             var model = _productService.GetAll(pagingParams);
 
             Response.Headers.Add("X-Pagination", model.GetHeader().ToJson());
 
-            var outputModel = new
+            var outputModel = new PagingDTO<ProductDTO>()
             {
                 Paging = model.GetHeader(),
                 Links = GetLinks(model),
@@ -58,7 +69,6 @@ namespace WebApi.Controllers
             return Ok(outputModel);
         }
 
-        #region I am not working on rigth now
         [HttpGet("product/{id}")]
         [ProducesResponseType(200, Type = typeof(ProductDTO))]
         [ProducesResponseType(404)] 
@@ -127,8 +137,8 @@ namespace WebApi.Controllers
 
             return Ok(obj);
         }
-        #endregion
 
+        #region Paging region
         private List<LinkInfo> GetLinks(PagedList<Product> list)
         {
             var links = new List<LinkInfo>();
@@ -156,11 +166,13 @@ namespace WebApi.Controllers
                 Method = method
             };
         }
+        #endregion
 
         private ProductDTO ToConvertDTO(Product obj)
         {
             return new ProductDTO()
             {
+                Id = obj.Id,
                 Description = obj.Description,
                 Active = obj.Active
             };

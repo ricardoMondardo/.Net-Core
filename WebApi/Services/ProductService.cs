@@ -42,6 +42,12 @@ namespace WebApi.Services
             _unitOfWork.Products.Add(obj);
             _unitOfWork.Save();
         }
+
+        public void Add(List<Product> products)
+        {
+            _unitOfWork.Products.AddRange(products);
+            _unitOfWork.SaveAsync();
+        }
         
         public async Task<Product> GetAsync(int id)
         {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -17,8 +18,7 @@ namespace WebApi.Helpers
                 try
                 {
                     var db = services.GetRequiredService<DataBaseContext>();
-                    //db.Database.Migrate();
-                    db.Database.EnsureCreated();
+                    db.Database.Migrate();
                 }
                 catch (Exception ex)
                 {

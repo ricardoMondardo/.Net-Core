@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,9 +24,6 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-
-           //services.AddDbContext<DataBaseContext>(options =>
-          //     options. UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<DataBaseContext>(options =>
                 options.UseInMemoryDatabase("foo"));
