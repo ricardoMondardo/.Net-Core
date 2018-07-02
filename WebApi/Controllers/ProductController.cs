@@ -36,19 +36,19 @@ namespace WebApi.Controllers
 
             List<Product> products = new List<Product>()
             {
-                new Product() { Id = 1, Description = "abc", Active = true },
-                new Product() { Id = 2, Description = "bca", Active = false },
-                new Product() { Id = 3, Description = "bcba", Active = false },
-                new Product() { Id = 4, Description = "dcba", Active = false },
-                new Product() { Id = 5, Description = "rcba", Active = false },
-                new Product() { Id = 6, Description = "xcba", Active = false },
-                new Product() { Id = 7, Description = "hcba", Active = false },
-                new Product() { Id = 8, Description = "ecba", Active = false },
-                new Product() { Id = 9, Description = "wcba", Active = false },
-                new Product() { Id = 10, Description = "qcba", Active = false }
+                new Product() { Description = "abc", Active = true },
+                new Product() { Description = "bca", Active = false },
+                new Product() { Description = "bcba", Active = false },
+                new Product() { Description = "dcba", Active = false },
+                new Product() { Description = "rcba", Active = false },
+                new Product() { Description = "xcba", Active = false },
+                new Product() { Description = "hcba", Active = false },
+                new Product() { Description = "ecba", Active = false },
+                new Product() { Description = "wcba", Active = false },
+                new Product() { Description = "qcba", Active = false }
             };
 
-            _productService.Add(products);
+            //_productService.Add(products);
 
         }
 
@@ -112,16 +112,17 @@ namespace WebApi.Controllers
         [HttpPost("product")]
         [ProducesResponseType(201, Type = typeof(ProductDTO))]
         [ProducesResponseType(400)]
-        public IActionResult Post([FromBody] Product obj)
+        public IActionResult Post([FromBody] ProductDTO obj)
         {
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _productService.Add(obj);
+            var product = ToConvertObj(obj);
+            _productService.Add(product);
 
-            return CreatedAtAction(nameof(Product), new { id = obj.Id }, ToConvertDTO(obj)); 
+            return CreatedAtAction(nameof(Product), new { id = product.Id }, ToConvertDTO(product)); 
         }
 
         [HttpPut("product")]
@@ -173,6 +174,15 @@ namespace WebApi.Controllers
             return new ProductDTO()
             {
                 Id = obj.Id,
+                Description = obj.Description,
+                Active = obj.Active
+            };
+        }
+
+        private Product ToConvertObj(ProductDTO obj)
+        {
+            return new Product()
+            {
                 Description = obj.Description,
                 Active = obj.Active
             };
