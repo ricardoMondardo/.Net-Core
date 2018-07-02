@@ -2,6 +2,7 @@
 
 - ASP.NET Core 2.1
 
+- Clean architecture 
 - UnitOfWork
 - Generic Repository
 - Entity Framework Core

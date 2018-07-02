@@ -85,7 +85,7 @@ namespace WebApi.Controllers
             return Ok(ToConvertDTO(product));
         }
 
-        [HttpGet("product/{id}/invoices")]  //Change to Async
+        [HttpGet("product/{id}/invoices")]
         [ProducesResponseType(200, Type = typeof(ProductInvoicesDTO))]
         [ProducesResponseType(404)]
         public IActionResult ProductInvoices(int id)
