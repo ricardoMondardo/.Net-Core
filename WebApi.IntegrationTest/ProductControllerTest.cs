@@ -14,6 +14,10 @@ namespace WebApi.IntegrationTest
         private Mock<IGerericRepository<Product>> _mockRepo = new Mock<IGerericRepository<Product>>();
         private Mock<IUnitOfWork>  _mockUnit = new Mock<IUnitOfWork>();
 
+        /*
+         *  To do, just tests at the moment
+         */
+
         [Fact]
         public void Test_Get_Product()
         {
