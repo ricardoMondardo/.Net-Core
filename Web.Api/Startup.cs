@@ -26,7 +26,7 @@ namespace WebApi
         {
 
             services.AddDbContext<DataBaseContext>(options =>
-                options.UseInMemoryDatabase("foo"));
+                options.UseInMemoryDatabase("fooo"));
             
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IProductService, ProductService>();

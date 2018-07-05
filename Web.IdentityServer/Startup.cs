@@ -8,28 +8,25 @@ namespace Web.IdentityServer
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
 
-            services.AddMvc();
-            services.AddIdentityServer()
-                .AddDeveloperSigningCredential();
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
 
+                    options.ApiName = "api1";
+                });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseAuthentication();
 
-            app.UseSpaStaticFiles();
-
-            app.UseIdentityServer();
-
-            app.UseMvcWithDefaultRoute();
-
-            
+            app.UseMvc();
         }
     }
 }
