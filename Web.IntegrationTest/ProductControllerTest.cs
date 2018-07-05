@@ -26,8 +26,8 @@ namespace WebApi.IntegrationTest
 
             var productService = new ProductService(_mockUnit.Object);
 
-            var ctor = new ProductController(productService);
-            var resul = ctor.Product(1);
+            //var ctor = new ProductController(productService);
+            //var resul = ctor.Product(1);
 
             //Assert.Equal(5, null);
         }
