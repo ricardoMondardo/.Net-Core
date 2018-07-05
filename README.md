@@ -15,7 +15,7 @@
 - IntentityServer4 (Other project) - Identity/Authentication/Authorization 
 - Cliente (Other project)
 
-## To Do to API
+## To Do (API)
 - Unit Test and Integration Test
 - Documentation
 - Caching
