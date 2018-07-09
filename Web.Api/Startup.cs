@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using System;
 using WebApi.Repository;
 using WebApi.Services;
 
@@ -26,7 +27,7 @@ namespace WebApi
         {
 
             services.AddDbContext<DataBaseContext>(options =>
-                options.UseInMemoryDatabase("fooo"));
+                options.UseInMemoryDatabase("foo"));
             
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IProductService, ProductService>();

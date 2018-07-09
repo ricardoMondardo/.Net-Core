@@ -14,6 +14,16 @@ namespace WebApi.Services
         public ProductService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+
+            if (Count() == 0)
+            {
+                Add(new List<Product>()
+                {
+                    new Product() { Description = "Abc"},
+                    new Product() { Description = "Bac"}
+                });
+            }
+
         }
 
         public int Count()

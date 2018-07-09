@@ -35,9 +35,9 @@ namespace Web.IdentityServer
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseInMemoryDatabase("fooa"));
+                options.UseInMemoryDatabase("foo1"));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
