@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api", "Web.Api\Web.Api.csproj", "{00FA9304-85B4-4AD1-8032-4FCDF086BD77}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.IntegrationTest", "Web.IntegrationTest\Web.Api.IntegrationTest.csproj", "{BA4456BA-C008-400B-B7BF-7D8B824C7F82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.IntegrationTest", "Web.IntegrationTest\Web.IntegrationTest.csproj", "{BA4456BA-C008-400B-B7BF-7D8B824C7F82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.UnitTest", "Web.UnitTest\Web.Api.UnitTest.csproj", "{3D47203E-1EE1-452A-8815-96DF8826F019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.UnitTest", "Web.UnitTest\Web.UnitTest.csproj", "{3D47203E-1EE1-452A-8815-96DF8826F019}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.App", "Web.App\Web.App.csproj", "{5A0C6255-A07C-485E-9FC4-72CAC44BBCD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.IdentityServer", "Web.IdentityServer\Web.IdentityServer.csproj", "{D1EB356C-3421-493B-A733-6444212C9E31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.IdentityServer", "Web.IdentityServer\Web.IdentityServer.csproj", "{D1EB356C-3421-493B-A733-6444212C9E31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
