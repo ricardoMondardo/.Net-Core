@@ -1,5 +1,4 @@
-## ASP.NET Core 2.1
-
+## API
 - Clean architecture 
 - UnitOfWork
 - Generic Repository
@@ -8,16 +7,27 @@
 - Consistent HTTP status codes
 - DTOs to move data back
 - Separation of concerns
-- and More ....
 
-## To Do
+ # To Do: 
 
-- IntentityServer4 (Other project) - Identity/Authentication/Authorization 
-- Cliente (Other project)
-
-## To Do (API)
-- Unit Test and Integration Test
 - Documentation
 - Caching
 - Versioning
 
+## IntentityServer
+- Authentication
+- User logic just here
+
+## App
+- Using Library UI
+
+## Library UI
+- Reusable 
+- Contact Page
+
+## Unit Test
+- Just Started
+
+## Integration Test
+- Started
+- Moq
