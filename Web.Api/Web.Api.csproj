@@ -5,14 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="App_data\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\" />
+    <Compile Remove="App_data\**" />
+    <Compile Remove="Migrations\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="App_data\**" />
+    <Content Remove="Migrations\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="App_data\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="App_data\**" />
+    <None Remove="Migrations\**" />
+    <None Remove="wwwroot\**" />
   </ItemGroup>
   
  <ItemGroup>
     <PackageReference Include="AspNetCore.IServiceCollection.AddIUrlHelper" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.5" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>    
 
