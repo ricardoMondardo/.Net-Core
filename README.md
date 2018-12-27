@@ -1,3 +1,22 @@
+## DevOps
+
+- Make sure you have Asp.net core 2.2
+
+- DeployLocal-API.bat For API
+
+https://localhost:5001/
+http://localhost:5000/
+
+- DeployLocal-IdentityServer.bat for IndetityServer
+
+https://localhost:6001/
+http://localhost:6000/
+
+
+##
+
+
+
 ## API
 - Clean architecture 
 - UnitOfWork
