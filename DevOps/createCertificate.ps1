@@ -1,0 +1,1 @@
+New-SelfSignedCertificate -DnsName "apipractice.deployment.com", "apipractice.deployment.com" -CertStoreLocation "C:\projects\Solution.Net.Core\DevOps"

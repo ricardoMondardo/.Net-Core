@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using WebApi.Helpers;
 
 namespace WebApi
 {    
@@ -8,14 +7,13 @@ namespace WebApi
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args)
-                .MigrateDatabase()
+            CreateWebHostBuilder(args)
+                .Build()
                 .Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                .UseStartup<Startup>();
     }
 }

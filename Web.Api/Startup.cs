@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
-using System;
 using WebApi.Repository;
 using WebApi.Services;
 
@@ -15,12 +14,12 @@ namespace WebApi
     public class Startup
     {
 
-        private readonly IConfiguration _configuration;
-
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
 
 
         public void ConfigureServices(IServiceCollection services)
@@ -33,8 +32,9 @@ namespace WebApi
             services.AddTransient<IProductService, ProductService>();
 
             services.AddUrlHelper();
+
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.ContractResolver =
@@ -49,6 +49,13 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                //app.UseHsts();
+            }
+
+            //app.UseHttpsRedirection();
 
             app.UseStaticFiles();
             app.UseMvc();

@@ -11,7 +11,7 @@ using WebApi.Services;
 namespace WebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("api/resources/")]
+    [Route("resources/")]
     public class ProductController : ControllerBase
     {
         /*

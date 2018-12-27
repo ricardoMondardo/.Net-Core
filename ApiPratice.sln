@@ -5,15 +5,19 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api", "Web.Api\Web.Api.csproj", "{00FA9304-85B4-4AD1-8032-4FCDF086BD77}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.IntegrationTest", "Web.IntegrationTest\Web.IntegrationTest.csproj", "{BA4456BA-C008-400B-B7BF-7D8B824C7F82}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.UnitTest", "Web.UnitTest\Web.UnitTest.csproj", "{3D47203E-1EE1-452A-8815-96DF8826F019}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.App", "Web.App\Web.App.csproj", "{5A0C6255-A07C-485E-9FC4-72CAC44BBCD4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.IdentityServer", "Web.IdentityServer\Web.IdentityServer.csproj", "{D1EB356C-3421-493B-A733-6444212C9E31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.LibraryUi", "Web.LibraryUi\Web.LibraryUi.csproj", "{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.LibraryUi", "Web.LibraryUi\Web.LibraryUi.csproj", "{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{6CBF22B1-2F36-41B5-8AC3-8B3B1E1A9DAF}"
+	ProjectSection(SolutionItems) = preProject
+		DevOps\createCertificate.ps1 = DevOps\createCertificate.ps1
+		DevOps\DeployLocal-API.bat = DevOps\DeployLocal-API.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +29,6 @@ Global
 		{00FA9304-85B4-4AD1-8032-4FCDF086BD77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00FA9304-85B4-4AD1-8032-4FCDF086BD77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00FA9304-85B4-4AD1-8032-4FCDF086BD77}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA4456BA-C008-400B-B7BF-7D8B824C7F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA4456BA-C008-400B-B7BF-7D8B824C7F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA4456BA-C008-400B-B7BF-7D8B824C7F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA4456BA-C008-400B-B7BF-7D8B824C7F82}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3D47203E-1EE1-452A-8815-96DF8826F019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D47203E-1EE1-452A-8815-96DF8826F019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D47203E-1EE1-452A-8815-96DF8826F019}.Release|Any CPU.ActiveCfg = Release|Any CPU
