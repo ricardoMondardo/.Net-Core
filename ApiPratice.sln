@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{6CBF22
 	ProjectSection(SolutionItems) = preProject
 		DevOps\createCertificate.ps1 = DevOps\createCertificate.ps1
 		DevOps\DeployLocal-API.bat = DevOps\DeployLocal-API.bat
+		DevOps\DeployLocal-IdentityServer.bat = DevOps\DeployLocal-IdentityServer.bat
 	EndProjectSection
 EndProject
 Global
