@@ -20,7 +20,11 @@ namespace WebApi.Services
                 Add(new List<Product>()
                 {
                     new Product() { Description = "Abc"},
-                    new Product() { Description = "Bac"}
+                    new Product() { Description = "Bac"},
+                    new Product() { Description = "Caa"},
+                    new Product() { Description = "Da1"},
+                    new Product() { Description = "Ea5"},
+                    new Product() { Description = "Fac"}
                 });
             }
 

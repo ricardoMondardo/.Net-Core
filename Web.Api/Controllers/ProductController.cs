@@ -35,6 +35,7 @@ namespace WebApi.Controllers
             _urlHelper = urlHelper;
         }
 
+        #region Methods Get
         [HttpGet("products", Name = "products")]
         [ProducesResponseType(200, Type = typeof(PagedList<ProductDTO>))]
         public IActionResult Products(PagingParams pagingParams)
@@ -91,7 +92,9 @@ namespace WebApi.Controllers
                 }).ToList()
             });
         }
+        #endregion
 
+        #region Methods Post/Put
         [HttpPost("product")]
         [ProducesResponseType(201, Type = typeof(ProductDTO))]
         [ProducesResponseType(400)]
@@ -121,6 +124,7 @@ namespace WebApi.Controllers
 
             return Ok(obj);
         }
+        #endregion
 
         #region Paging region
         private List<LinkInfo> GetLinks(PagedList<Product> list)
@@ -152,6 +156,7 @@ namespace WebApi.Controllers
         }
         #endregion
 
+        #region Convertions
         private ProductDTO ToConvertDTO(Product obj)
         {
             return new ProductDTO()
@@ -170,6 +175,7 @@ namespace WebApi.Controllers
                 Active = obj.Active
             };
         }
+        #endregion
 
     }
 }
