@@ -8,6 +8,8 @@ namespace WebApi.Repository
     {
         private DataBaseContext _context;
 
+        private bool _disposed = false;
+
         public UnitOfWork(DataBaseContext context)
         {
             _context = context;
@@ -39,18 +41,16 @@ namespace WebApi.Repository
             return rowsAffected;
         }
 
-        private bool disposed = false;
-
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
                     _context.Dispose();
                 }
             }
-            this.disposed = true;
+            _disposed = true;
         }
 
         public void Dispose()
