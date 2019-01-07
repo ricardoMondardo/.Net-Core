@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.App", "Web.App\Web.App.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.IdentityServer", "Web.IdentityServer\Web.IdentityServer.csproj", "{D1EB356C-3421-493B-A733-6444212C9E31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.LibraryUi", "Web.LibraryUi\Web.LibraryUi.csproj", "{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{6CBF22B1-2F36-41B5-8AC3-8B3B1E1A9DAF}"
 	ProjectSection(SolutionItems) = preProject
 		DevOps\createCertificate.ps1 = DevOps\createCertificate.ps1
@@ -44,10 +42,6 @@ Global
 		{D1EB356C-3421-493B-A733-6444212C9E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1EB356C-3421-493B-A733-6444212C9E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1EB356C-3421-493B-A733-6444212C9E31}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6357655-4024-4633-BFC2-DBC62D457ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C6357655-4024-4633-BFC2-DBC62D457ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6357655-4024-4633-BFC2-DBC62D457ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU

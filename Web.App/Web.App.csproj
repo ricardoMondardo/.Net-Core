@@ -8,8 +8,4 @@
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Web.LibraryUi\Web.LibraryUi.csproj" />
-  </ItemGroup>
-
 </Project>
