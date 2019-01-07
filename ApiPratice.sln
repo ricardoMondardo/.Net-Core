@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{6CBF22
 		DevOps\DeployLocal-IdentityServer.bat = DevOps\DeployLocal-IdentityServer.bat
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.EmailManager", "Web.EmailManager\Web.EmailManager.csproj", "{C6357655-4024-4633-BFC2-DBC62D457ADC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7EAEAE4-F025-40E4-9AF0-9CC6FA10B7B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6357655-4024-4633-BFC2-DBC62D457ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6357655-4024-4633-BFC2-DBC62D457ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6357655-4024-4633-BFC2-DBC62D457ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6357655-4024-4633-BFC2-DBC62D457ADC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
