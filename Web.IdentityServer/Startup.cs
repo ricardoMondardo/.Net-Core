@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Web.IdentityServer.Models;
+using Web.IdentityServer.Services;
 
 namespace Web.IdentityServer
 {
@@ -49,7 +50,7 @@ namespace Web.IdentityServer
                 googleOptions.ClientSecret = Configuration["Authentication:Google:client_secret"];
             });
 
-            //services.AddTransient<IEmailSender, EmailSender>();       
+            services.AddTransient<IEmailSender, EmailSender>();       
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

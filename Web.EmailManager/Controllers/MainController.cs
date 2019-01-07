@@ -8,7 +8,7 @@ using Web.EmailManager.Models;
 
 namespace Web.EmailManager.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/")]
     [ApiController]
     public class MainController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace Web.EmailManager.Controllers
             _emailService = emailService;
         }
 
-        [HttpGet]
+        [HttpGet("SendEmailTest")]
         public ActionResult<IEnumerable<string>> SendEmail()
         {
 
