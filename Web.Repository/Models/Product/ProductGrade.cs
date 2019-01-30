@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Web.Repository.Models
+namespace Web.Repository.Models.Product
 {
     public class ProductGrade
     {

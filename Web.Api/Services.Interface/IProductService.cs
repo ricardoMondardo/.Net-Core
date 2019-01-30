@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Web.Repository.Models;
+using Web.Repository.Models.Product;
 using Web.Api.Helpers.Pagging;
 
 namespace Web.Api.Services

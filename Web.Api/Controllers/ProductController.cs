@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Web.Repository.Models;
+using Web.Repository.Models.Product;
 using Web.Api.Dtos;
 using Web.Api.Dtos.Commons;
 using Web.Api.Helpers.Pagging;

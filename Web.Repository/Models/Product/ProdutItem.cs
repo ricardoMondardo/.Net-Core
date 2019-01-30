@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Web.Repository.Models
+namespace Web.Repository.Models.Product
 {
-    public class ProductDetail
+    public class ProdutItem
     {
         public int Id { get; set; }
-        public string ComeFrom { get; set; }
-        public string MadeFor { get; set; }
-        public int ProductId { get; set; }
+        public string Description { get; set; }
         public Product Product { get; set; }
     }
 }
