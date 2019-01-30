@@ -53,7 +53,7 @@ namespace Web.Api.Controllers
             return Ok(outputModel);
         }
 
-        [HttpGet("product/{id}")]
+        [HttpGet("products/{id}")]
         [ProducesResponseType(200, Type = typeof(ProductDTO))]
         [ProducesResponseType(404)] 
         public IActionResult Product(int id)
@@ -69,7 +69,7 @@ namespace Web.Api.Controllers
             return Ok(ToConvertDTO(product));
         }
 
-        [HttpGet("product/{id}/invoices")]
+        [HttpGet("products/{id}/invoices")]
         [ProducesResponseType(200, Type = typeof(ProductInvoicesDTO))]
         [ProducesResponseType(404)]
         public IActionResult ProductInvoices(int id)
