@@ -50,6 +50,7 @@ namespace Web.Api
             services.AddTransient<IEmailService, EmailService>();
 
             services.AddUrlHelper();
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options =>
@@ -68,13 +69,12 @@ namespace Web.Api
             }
             else
             {
-                // The default HSTS value is 30 days. 
-                //You may want to change this for production scenarios, 
-                //see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             app.UseMvc();
 
