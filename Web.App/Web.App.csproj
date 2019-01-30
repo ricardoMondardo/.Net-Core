@@ -8,4 +8,8 @@
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Web.EmailSender\Web.EmailSender.csproj" />
+  </ItemGroup>
+
 </Project>

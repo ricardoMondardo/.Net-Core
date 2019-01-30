@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using Web.EmailSender.Interfaces;
+using Web.EmailSender.Services;
 using WebApi.Repository;
 using WebApi.Services;
 
@@ -14,9 +16,12 @@ namespace WebApi
     public class Startup
     {
 
-        public Startup(IConfiguration configuration)
+        private readonly IHostingEnvironment Env;
+
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            Env = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -25,11 +30,22 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<DataBaseContext>(options =>
+            if (Env.IsDevelopment())
+            {
+                services.AddDbContext<DataBaseContext>(options =>
                 options.UseInMemoryDatabase("foo"));
-            
+            }
+            else
+            {
+                services.AddDbContext<DataBaseContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ProdConnection")));
+            }
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IProductService, ProductService>();
+
+            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            services.AddTransient<IEmailService, EmailService>();
 
             services.AddUrlHelper();
 
