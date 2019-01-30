@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApi.Models
+namespace Web.Repository.Models
 {
-    public class ProdutItem
+    public class ProductGrade
     {
         public int Id { get; set; }
         public string Description { get; set; }
-
-        public Product Product { get; set; }
+        private ICollection<Product> Products { get; set; }
     }
 }

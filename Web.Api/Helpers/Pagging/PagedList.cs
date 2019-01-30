@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApi.Helpers.Pagging
+namespace Web.Api.Helpers.Pagging
 {
     public class PagedList<TEntity>
     {

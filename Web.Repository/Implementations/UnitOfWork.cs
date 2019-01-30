@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using WebApi.Models;
+using Web.Repository.Context;
+using Web.Repository.Implementations;
+using Web.Repository.Interfaces;
+using Web.Repository.Models;
 
-namespace WebApi.Repository
+namespace Web.Api.Repository.Implementations
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {

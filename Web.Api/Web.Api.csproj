@@ -14,6 +14,7 @@
   
  <ItemGroup>
    <ProjectReference Include="..\Web.EmailSender\Web.EmailSender.csproj" />
+   <ProjectReference Include="..\Web.Repository\Web.Repository.csproj" />
  </ItemGroup>    
 
 </Project>

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Helpers.Pagging;
+using Web.Api.Helpers.Pagging;
 
-namespace WebApi.Dtos.Commons
+namespace Web.Api.Dtos.Commons
 {
     public class PagingDTO<TEntity>
     {

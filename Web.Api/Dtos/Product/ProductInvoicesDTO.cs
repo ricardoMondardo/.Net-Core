@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Models;
+using Web.Repository.Models;
 
-namespace WebApi.Dtos
+namespace Web.Api.Dtos
 {
     public class ProductInvoicesDTO
     {

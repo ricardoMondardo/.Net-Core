@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace WebApi.Helpers.Pagging
+namespace Web.Api.Helpers.Pagging
 {
     public class PagingHeader
     {

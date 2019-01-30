@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Models;
+using Web.Repository.Models;
 
-namespace WebApi.Repository
+namespace Web.Repository.Interfaces
 {
     public interface IUnitOfWork
     {

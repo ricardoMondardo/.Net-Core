@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Web.Repository.Context;
+using Web.Repository.Interfaces;
 
-namespace WebApi.Repository
+namespace Web.Repository.Implementations
 {
     public class GenericRepository<TEntity> : IGerericRepository<TEntity> where TEntity : class
     {

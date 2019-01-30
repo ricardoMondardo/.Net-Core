@@ -8,10 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using Web.EmailSender.Interfaces;
 using Web.EmailSender.Services;
-using WebApi.Repository;
-using WebApi.Services;
+using Web.Repository.Context;
+using Web.Repository.Interfaces;
+using Web.Api.Repository.Implementations;
+using Web.Api.Services;
 
-namespace WebApi
+namespace Web.Api
 {
     public class Startup
     {

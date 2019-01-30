@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Dtos;
-using WebApi.Dtos.Commons;
-using WebApi.Helpers.Pagging;
-using WebApi.Models;
-using WebApi.Services;
+using Web.Repository.Models;
+using Web.Api.Dtos;
+using Web.Api.Dtos.Commons;
+using Web.Api.Helpers.Pagging;
+using Web.Api.Services;
 
-namespace WebApi.Controllers
+namespace Web.Api.Controllers
 {
     [Produces("application/json")]
     [Route("resources/")]

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Web.EmailSender.Models;
 using Web.EmailSender.Interfaces;
 
-namespace Web.EmailManager.Controllers
+namespace Web.Api.Controllers
 {
     [Route("emailSender/")]
     [ApiController]

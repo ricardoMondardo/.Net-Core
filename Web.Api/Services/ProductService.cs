@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Helpers.Pagging;
-using WebApi.Models;
-using WebApi.Repository;
+using Web.Repository.Interfaces;
+using Web.Repository.Models;
+using Web.Api.Helpers.Pagging;
 
-namespace WebApi.Services
+namespace Web.Api.Services
 {
     public class ProductService : IProductService
     {

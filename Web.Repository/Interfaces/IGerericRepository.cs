@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace WebApi.Repository
+namespace Web.Repository.Interfaces
 {
     public interface IGerericRepository<TEntity> where TEntity : class
     {
