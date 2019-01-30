@@ -8,7 +8,7 @@ using Web.EmailSender.Interfaces;
 
 namespace Web.Api.Controllers
 {
-    [Route("emailSender/")]
+    [Route("api/emailSender/")]
     [ApiController]
     public class EmailSenderController : ControllerBase
     {

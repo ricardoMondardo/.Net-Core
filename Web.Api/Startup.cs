@@ -32,16 +32,16 @@ namespace Web.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            if (Env.IsDevelopment())
-            {
+            //if (Env.IsDevelopment())
+            //{
                 services.AddDbContext<DataBaseContext>(options =>
                 options.UseInMemoryDatabase("foo"));
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 services.AddDbContext<DataBaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ProdConnection")));
-            }
+            //}
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IProductService, ProductService>();
