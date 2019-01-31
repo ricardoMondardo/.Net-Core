@@ -19,7 +19,7 @@ namespace Web.Api.Services
         Product GetInvoices(string id);
 
         List<Product> GetAll();
-        PagedList<Product> GetAll(PagingParams pagingParams);
+        PagedList<Product> GetAllPagging(PagingParams pagingParams);
 
     }
 }

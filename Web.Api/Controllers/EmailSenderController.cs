@@ -20,7 +20,7 @@ namespace Web.Api.Controllers
             _emailService = emailService;
         }
 
-        [HttpGet("SendEmailTest")]
+        [HttpGet("sendEmailTest")]
         public ActionResult<IEnumerable<string>> SendEmail()
         {
 

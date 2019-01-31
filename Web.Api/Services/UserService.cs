@@ -21,6 +21,11 @@ namespace Web.Api.Services
             _unitOfWork.Save();
         }
 
+        public User Get(string id)
+        {
+            return _unitOfWork.Users.Get(id);
+        }
+
         public User GetSingle(string email)
         {
             return _unitOfWork.Users.Find(u => u.Email == email).FirstOrDefault();

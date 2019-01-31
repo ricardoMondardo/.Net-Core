@@ -13,5 +13,6 @@ namespace Web.Api.Services.Interface
         bool IsUsernameUniq(string username);
 
         User GetSingle(string email);
+        User Get(string Id);
     }
 }

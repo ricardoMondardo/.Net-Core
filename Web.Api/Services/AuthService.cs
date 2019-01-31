@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -20,27 +21,27 @@ namespace Web.Api.Services
         }
         public AuthDataDto GetAuthData(string id)
         {
-            //var expirationTime = DateTime.Now.AddSeconds(_jwtLifespan);
-            var expirationTime = DateTime.UtcNow.AddSeconds(_jwtLifespan);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Name, id)
-                }),
-                Expires = expirationTime,                
-                SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret)),
-                    SecurityAlgorithms.HmacSha256Signature
-                )
-            };
+            var expirationTime = DateTime.Now.AddMinutes(_jwtLifespan);
+            //var expirationTime = DateTime.UtcNow.AddSeconds(_jwtLifespan);
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret));
+            var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256Signature);
+
+            var tokeOptions = new JwtSecurityToken(
+                     issuer: "http://localhost:5000",
+                     audience: "http://localhost:5000",
+                     claims: new List<Claim>() {
+                         new Claim(ClaimTypes.NameIdentifier, id),
+                     },
+                     expires: expirationTime,
+                     signingCredentials: signingCredentials
+                 );
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
 
             return new AuthDataDto
             {
-                Token = token,
+                Token = tokenString,
                 TokenExpirationTime = ((DateTimeOffset)expirationTime).ToUnixTimeSeconds(),
                 Id = id
             };

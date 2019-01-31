@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Linq;
 using Web.Repository.Models.Product;
 using Web.Api.Dtos;
@@ -13,7 +12,7 @@ namespace Web.Api.Controllers
     [Produces("application/json")]
     [Route("api/resources/")]
     [Authorize]
-    public class ProductController : Controller
+    public class ProductController : BasePaggingController<Product>
     {
         /*
          * Provide just what is necessary, no more, no less
@@ -28,12 +27,10 @@ namespace Web.Api.Controllers
          */
 
         private IProductService _productService;
-        private readonly IUrlHelper _urlHelper;
 
-        public ProductController(IProductService productService, IUrlHelper urlHelper)
+        public ProductController(IProductService productService, IUrlHelper urlHelper) : base(urlHelper)
         {
             _productService = productService;
-            _urlHelper = urlHelper;
         }
 
         #region Methods Get
@@ -41,14 +38,14 @@ namespace Web.Api.Controllers
         [ProducesResponseType(200, Type = typeof(PagedList<ProductDTO>))]
         public IActionResult Products(PagingParams pagingParams)
         {
-            var model = _productService.GetAll(pagingParams);
+            var model = _productService.GetAllPagging(pagingParams);
 
             Response.Headers.Add("X-Pagination", model.GetHeader().ToJson());
 
             var outputModel = new PagingDTO<ProductDTO>()
             {
                 Paging = model.GetHeader(),
-                Links = GetLinks(model),
+                Links = GetLinks(model, "products"),
                 Items = model.List.Select(m => ToConvertDTO(m)).ToList(),
             };
             return Ok(outputModel);
@@ -124,36 +121,6 @@ namespace Web.Api.Controllers
             }
 
             return Ok(obj);
-        }
-        #endregion
-
-        #region Paging region
-        private List<LinkInfo> GetLinks(PagedList<Product> list)
-        {
-            var links = new List<LinkInfo>();
-
-            if (list.HasPreviousPage)
-                links.Add(CreateLink("products", list.PreviousPageNumber, list.PageSize, "previousPage", "GET"));
-
-            links.Add(CreateLink("products", list.PageNumber, list.PageSize, "self", "GET"));
-
-            if (list.HasNextPage)
-                links.Add(CreateLink("products", list.NextPageNumber, list.PageSize, "nextPage", "GET"));
-
-            return links;
-        }
-
-        private LinkInfo CreateLink(
-            string routeName, int pageNumber, int pageSize,
-            string rel, string method)
-        {
-            return new LinkInfo
-            {
-                Href = _urlHelper.Link(routeName,
-                            new { PageNumber = pageNumber, PageSize = pageSize }),
-                Rel = rel,
-                Method = method
-            };
         }
         #endregion
 

@@ -19,6 +19,7 @@ using Web.Api.Services.Interface;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Microsoft.IdentityModel.Logging;
+using System;
 
 namespace Web.Api
 {
@@ -53,36 +54,38 @@ namespace Web.Api
             IdentityModelEventSource.ShowPII = true;
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true, //The issuer is the actual server that created the token
+                    ValidateAudience = true,
 
-                        IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.UTF8.GetBytes(Configuration.GetValue<string>("JWTSecretKey"))
-                        )
-                    };
-                    options.Events = new JwtBearerEvents
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = "http://localhost:5000",
+                    ValidAudience = "http://localhost:5000",
+
+                    ClockSkew = TimeSpan.Zero, //Expires right after expiration date
+
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(Configuration.GetValue<string>("JWTSecretKey"))
+                    )
+                };
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
                     {
-                        OnMessageReceived = context =>
+                        var accessToken = context.Request.Query["access_token"];                            
+                        if (!string.IsNullOrEmpty(accessToken))
                         {
-                            var accessToken = context.Request.Query["access_token"];
-
-                            // If the request is for our hub...
-                            var path = context.HttpContext.Request.Path;
-                            if (!string.IsNullOrEmpty(accessToken))
-                            {
-                                // Read the token out of the query string
-                                context.Token = accessToken;
-                            }
-                            return Task.CompletedTask;
+                            context.Token = accessToken;
                         }
-                    };
-                });
+                        return Task.CompletedTask;
+                    }
+                };
+            });
 
             services.AddSingleton<IAuthService>(
                 new AuthService(
