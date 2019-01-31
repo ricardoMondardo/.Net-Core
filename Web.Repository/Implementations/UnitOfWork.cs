@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Web.Repository.Context;
 using Web.Repository.Implementations;
 using Web.Repository.Interfaces;
+using Web.Repository.Models;
 using Web.Repository.Models.Product;
 using Web.Repository.Models.User;
 
@@ -14,6 +15,7 @@ namespace Web.Api.Repository.Implementations
         private bool _disposed = false;
         private IGerericRepository<Product> _products;
         private IGerericRepository<User> _users;
+        private IGerericRepository<Todo> _todo;
 
         public UnitOfWork(DataBaseContext context)
         {
@@ -22,21 +24,16 @@ namespace Web.Api.Repository.Implementations
 
         public IGerericRepository<Product> Products
         {
-            get
-            {
-                if (this._products == null)
-                    this._products = new GenericRepository<Product>(_context);
-                return this._products;
-            }
+            get { return _products ?? new GenericRepository<Product>(_context); }
         }
         public IGerericRepository<User> Users
         {
-            get
-            {
-                if (this._users == null)
-                    this._users = new GenericRepository<User>(_context);
-                return this._users;
-            }
+            get { return _users ?? new GenericRepository<User>(_context); }
+        }
+
+        public IGerericRepository<Todo> Todos
+        {
+            get { return _todo ?? new GenericRepository<Todo>(_context);}
         }
 
         public void Save()

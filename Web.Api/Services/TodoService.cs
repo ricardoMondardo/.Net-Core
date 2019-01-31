@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Web.Api.Services.Interface;
+using Web.Repository.Interfaces;
+using Web.Repository.Models;
+
+namespace Web.Api.Services
+{
+    public class TodoService : ITodoService
+    {
+        private IUnitOfWork _unitOfWork;
+
+        public TodoService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+        public void Add(Todo todo)
+        {
+            _unitOfWork.Todos.Add(todo);
+            _unitOfWork.Save();
+        }
+
+        public void SetDone(string id)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
