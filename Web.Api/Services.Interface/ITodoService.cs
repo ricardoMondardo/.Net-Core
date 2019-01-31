@@ -13,5 +13,6 @@ namespace Web.Api.Services.Interface
         void SetDone(string id);
         Todo Get(string id);
         IQueryable<Todo> GetAllQueryable();
+        void Remove(string id);
     }
 }

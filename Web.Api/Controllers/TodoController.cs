@@ -77,5 +77,24 @@ namespace Web.Api.Controllers
             return CreatedAtAction(nameof(Todo), new { id = todo.Id }, obj);
         }
 
+        [HttpDelete("todos/{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public IActionResult Delete(string id)
+        {
+
+            var todo = _todoService.Get(id);
+
+            if(todo == null)
+            {
+                return NotFound();
+            }
+
+            _todoService.Remove(todo.Id);
+
+            return Ok("All right!, Todo removed");
+        }
+
+
     }
 }

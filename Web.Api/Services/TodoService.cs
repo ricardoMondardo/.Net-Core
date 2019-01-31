@@ -34,6 +34,14 @@ namespace Web.Api.Services
             return _unitOfWork.Todos.Find().AsQueryable();
         }
 
+        public void Remove(string id)
+        {
+            var todo = _unitOfWork.Todos.Get(id);
+
+            _unitOfWork.Todos.Remove(todo);
+            _unitOfWork.Save();
+        }
+
         public void SetDone(string id)
         {
             throw new NotImplementedException();

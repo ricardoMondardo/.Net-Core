@@ -14,18 +14,6 @@ namespace Web.Api.Controllers
     [Authorize]
     public class ProductController : BasePaggingController<Product>
     {
-        /*
-         * Provide just what is necessary, no more, no less
-         * Use a hanful of http status code
-         * 
-         * 200 -   Ok
-         * 201 -   Created
-         * 400 -   Bad Request (Show why is bad Request)
-         * 404 -   Not Found
-         * 401 -   Unauthorized
-         * 403 -   Forbidden
-         */
-
         private IProductService _productService;
 
         public ProductController(IProductService productService, IUrlHelper urlHelper) : base(urlHelper)
