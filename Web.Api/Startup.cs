@@ -40,16 +40,18 @@ namespace Web.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //if (Env.IsDevelopment())
-            //{
+            if (Env.IsDevelopment())
+            {
                 services.AddDbContext<DataBaseContext>(options =>
-                options.UseInMemoryDatabase("foo"));
-            //}
-            //else
-            //{
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("DevConnection")));
+            }
+            else
+            {
                 services.AddDbContext<DataBaseContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ProdConnection")));
-            //}
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("ProdConnection")));
+            }
 
             IdentityModelEventSource.ShowPII = true;
 
