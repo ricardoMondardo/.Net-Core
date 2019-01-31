@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.Repository.Interfaces;
 using Web.Repository.Models.Product;
-using Web.Api.Helpers.Pagging;
 
 namespace Web.Api.Services
 {
@@ -59,7 +58,7 @@ namespace Web.Api.Services
         public void Add(List<Product> products)
         {
             _unitOfWork.Products.AddRange(products);
-            _unitOfWork.SaveAsync();
+            _unitOfWork.Save();
         }
         
         public async Task<Product> GetAsync(string id)
