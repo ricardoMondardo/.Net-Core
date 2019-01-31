@@ -9,14 +9,14 @@ namespace Web.Api.Services
 {
     public interface IProductService
     {
-        Task<Product> GetAsync(int id);
+        Task<Product> GetAsync(string id);
 
         void Add(Product product);
         void Add(List<Product> products);
         int Count();
 
-        Product Get(int id);
-        Product GetInvoices(int id);
+        Product Get(string id);
+        Product GetInvoices(string id);
 
         List<Product> GetAll();
         PagedList<Product> GetAll(PagingParams pagingParams);

@@ -6,12 +6,14 @@ using Web.Api.Dtos;
 using Web.Api.Dtos.Commons;
 using Web.Api.Helpers.Pagging;
 using Web.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/resources/")]
-    public class ProductController : ControllerBase
+    [Authorize]
+    public class ProductController : Controller
     {
         /*
          * Provide just what is necessary, no more, no less
@@ -55,7 +57,7 @@ namespace Web.Api.Controllers
         [HttpGet("products/{id}")]
         [ProducesResponseType(200, Type = typeof(ProductDTO))]
         [ProducesResponseType(404)] 
-        public IActionResult Product(int id)
+        public IActionResult Product(string id)
         {
 
             var product = _productService.Get(id);
@@ -71,7 +73,7 @@ namespace Web.Api.Controllers
         [HttpGet("products/{id}/invoices")]
         [ProducesResponseType(200, Type = typeof(ProductInvoicesDTO))]
         [ProducesResponseType(404)]
-        public IActionResult ProductInvoices(int id)
+        public IActionResult ProductInvoices(string id)
         {
 
             var product = _productService.GetInvoices(id);

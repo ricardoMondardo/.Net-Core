@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Web.Api.Dtos.AuthData
 {
-    public class AuthData
+    public class AuthDataDto
     {
         public string Token { get; set; }
         public long TokenExpirationTime { get; set; }

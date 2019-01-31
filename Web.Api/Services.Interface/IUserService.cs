@@ -9,5 +9,9 @@ namespace Web.Api.Services.Interface
     public interface IUserService
     {
         void Add(User user);
+        bool IsEmailUniq(string email);
+        bool IsUsernameUniq(string username);
+
+        User GetSingle(string email);
     }
 }

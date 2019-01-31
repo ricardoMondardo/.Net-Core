@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Web.Repository.Models;
 
 namespace Web.Repository.Interfaces
 {
-    public interface IGerericRepository<TEntity> where TEntity : class
+    public interface IGerericRepository<TEntity> where TEntity : class, IEntityBase, new()
     {
-        Task<TEntity> GetAsync(int id);
+        Task<TEntity> GetAsync(string id);
         Task<IEnumerable<TEntity>> GetAllAsync();
 
         int Count();
-        TEntity Get(int id);
+        TEntity Get(string id);
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 
         List<TEntity> GetAll();

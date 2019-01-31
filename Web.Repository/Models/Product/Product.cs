@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Web.Repository.Models.Product
 {
-    public class Product
+    public class Product : IEntityBase
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
         [MaxLength(100)]
         public string Description { get; set; }

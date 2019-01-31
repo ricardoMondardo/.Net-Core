@@ -6,10 +6,12 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Web.Repository.Context;
 using Web.Repository.Interfaces;
+using Web.Repository.Models;
 
 namespace Web.Repository.Implementations
 {
-    public class GenericRepository<TEntity> : IGerericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGerericRepository<TEntity> 
+            where TEntity : class, IEntityBase, new()
     {
         private DataBaseContext _context;
         private readonly DbSet<TEntity> _dbSet;
@@ -25,17 +27,12 @@ namespace Web.Repository.Implementations
             return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> GetAsync(int id)
-        {
-            return await _context.Set<TEntity>().FindAsync(id);
-        }
-
         public async Task<TEntity> GetAsync(string id)
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(string id)
         {
             return _context.Set<TEntity>().Find(id);
         }
@@ -73,7 +70,7 @@ namespace Web.Repository.Implementations
         
         public void Add(TEntity entity)
         {
-            _context.Set<TEntity>().Add(entity);            
+            _context.Set<TEntity>().Add(entity);
         }
 
         public void AddRange(IEnumerable<TEntity> entities)

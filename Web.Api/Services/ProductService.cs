@@ -34,12 +34,12 @@ namespace Web.Api.Services
             return _unitOfWork.Products.Count();
         }
 
-        public Product Get(int id)
+        public Product Get(string id)
         {
             return _unitOfWork.Products.Get(id);
         }
 
-        public Product GetInvoices(int id)
+        public Product GetInvoices(string id)
         {
             return _unitOfWork.Products.Find( x => x.Id == id, x => x.ProductDetail, x => x.ProductGrade, x => x.ProdutItens)
                 .FirstOrDefault();
@@ -62,7 +62,7 @@ namespace Web.Api.Services
             _unitOfWork.SaveAsync();
         }
         
-        public async Task<Product> GetAsync(int id)
+        public async Task<Product> GetAsync(string id)
         {
             return await _unitOfWork.Products.GetAsync(id);
         }

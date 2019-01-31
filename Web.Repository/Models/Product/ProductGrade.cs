@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Web.Repository.Models.Product
 {
-    public class ProductGrade
+    public class ProductGrade : IEntityBase
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Description { get; set; }
         private ICollection<Product> Products { get; set; }
     }

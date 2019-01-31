@@ -18,6 +18,22 @@ namespace Web.Api.Services
         public void Add(User user)
         {
             _unitOfWork.Users.Add(user);
+            _unitOfWork.Save();
+        }
+
+        public User GetSingle(string email)
+        {
+            return _unitOfWork.Users.Find(u => u.Email == email).FirstOrDefault();
+        }
+
+        public bool IsEmailUniq(string email)
+        {
+            return GetSingle(email) == null;
+        }
+
+        public bool IsUsernameUniq(string username)
+        {
+            return _unitOfWork.Users.Find(u => u.UserName == username).FirstOrDefault() == null;
         }
     }
 }
