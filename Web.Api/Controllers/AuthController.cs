@@ -49,17 +49,15 @@ namespace Web.Api.Controllers
             var usernameUniq = _userService.IsUsernameUniq(model.Username);
             if (!usernameUniq) return BadRequest(new { username = "user with this email already exists" });
 
-            var id = Guid.NewGuid().ToString();
             var user = new User
             {
-                Id = id,
                 UserName = model.Username,
                 Email = model.Email,
                 Password = _authService.HashPassword(model.Password)
             };
             _userService.Add(user);
 
-            return _authService.GetAuthData(id);
+            return _authService.GetAuthData(user.Id);
         }
 
     }

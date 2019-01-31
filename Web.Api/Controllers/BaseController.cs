@@ -16,6 +16,12 @@ namespace Web.Api.Controllers
             _urlHelper = urlHelper;
         }
 
+        public PagedList<T> Pagging(PagingParams pagingParams, IQueryable<T> query)
+        {
+            return new PagedList<T>(
+                query, pagingParams.PageNumber, pagingParams.PageSize);
+        }
+
         public List<LinkInfo> GetLinks(PagedList<T> list, string routeName)
         {
             var links = new List<LinkInfo>();

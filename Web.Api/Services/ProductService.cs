@@ -67,11 +67,9 @@ namespace Web.Api.Services
             return await _unitOfWork.Products.GetAsync(id);
         }
 
-        public PagedList<Product> GetAllPagging(PagingParams pagingParams)
+        public IQueryable<Product> GetAllQueryable()
         {
-            var query = _unitOfWork.Products.Find().AsQueryable();
-            return new PagedList<Product>(
-                query, pagingParams.PageNumber, pagingParams.PageSize);
+            return _unitOfWork.Products.Find().AsQueryable();
         }
 
     }

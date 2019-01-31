@@ -38,8 +38,9 @@ namespace Web.Api.Controllers
         [ProducesResponseType(200, Type = typeof(PagedList<ProductDTO>))]
         public IActionResult Products(PagingParams pagingParams)
         {
-            var model = _productService.GetAllPagging(pagingParams);
-
+            var arr = _productService.GetAllQueryable();
+            var model = Pagging(pagingParams, arr);
+            
             Response.Headers.Add("X-Pagination", model.GetHeader().ToJson());
 
             var outputModel = new PagingDTO<ProductDTO>()
