@@ -7,6 +7,7 @@ using CryptoHelper;
 using Microsoft.IdentityModel.Tokens;
 using Web.Api.Dtos.AuthData;
 using Web.Api.Services.Interface;
+using Web.Repository.Models.User;
 
 namespace Web.Api.Services
 {
@@ -19,7 +20,7 @@ namespace Web.Api.Services
             this._jwtSecret = jwtSecret;
             this._jwtLifespan = jwtLifespan;
         }
-        public AuthDataDto GetAuthData(string id)
+        public AuthDataDto GetAuthData(User user)
         {
             var expirationTime = DateTime.Now.AddMinutes(_jwtLifespan);
             //var expirationTime = DateTime.UtcNow.AddSeconds(_jwtLifespan);
@@ -31,7 +32,8 @@ namespace Web.Api.Services
                      issuer: "http://localhost:5000",
                      audience: "http://localhost:5000",
                      claims: new List<Claim>() {
-                         new Claim(ClaimTypes.NameIdentifier, id),
+                         new Claim(ClaimTypes.NameIdentifier, user.Id),
+                         new Claim(ClaimTypes.Name, user.UserName)
                      },
                      expires: expirationTime,
                      signingCredentials: signingCredentials
@@ -43,7 +45,7 @@ namespace Web.Api.Services
             {
                 Token = tokenString,
                 TokenExpirationTime = ((DateTimeOffset)expirationTime).ToUnixTimeSeconds(),
-                Id = id
+                Id = user.Id
             };
         }
 

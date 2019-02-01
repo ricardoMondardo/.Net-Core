@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Api.Dtos.AuthData;
+using Web.Repository.Models.User;
 
 namespace Web.Api.Services.Interface
 {
@@ -10,6 +11,6 @@ namespace Web.Api.Services.Interface
     {
         string HashPassword(string password);
         bool VerifyPassword(string actualPassword, string hashedPassword);
-        AuthDataDto GetAuthData(string id);
+        AuthDataDto GetAuthData(User id);
     }
 }

@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading.Tasks;
-using Web.Api.Dtos.Commons;
 using Web.Api.Dtos.Todo;
 using Web.Api.Helpers.Pagging;
 using Web.Api.Services.Interface;
@@ -13,7 +10,8 @@ namespace Web.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/resources/")]
-    public class TodoController : BasePaggingController<Todo>
+    [Authorize]
+    public class TodoController : BasePaggingController<TodoDto>
     {
 
         private readonly ITodoService _todoService;
@@ -27,18 +25,16 @@ namespace Web.Api.Controllers
         [ProducesResponseType(200, Type = typeof(PagedList<TodoDto>))]
         public IActionResult Todos(PagingParams pagingParams)
         {
-            var arr = _todoService.GetAllQueryable();
-            var model = Pagging(pagingParams, arr);
+            var arr = _todoService
+                .GetAllQueryable()
+                .Select(x => 
+                    new TodoDto() {
+                            Text = x.Text,
+                            Active = x.Active,
+                            UserId = x.UserId
+                    });
 
-            Response.Headers.Add("X-Pagination", model.GetHeader().ToJson());
-
-            var outputModel = new PagingDTO<Todo>()
-            {
-                Paging = model.GetHeader(),
-                Links = GetLinks(model, "todos"),
-                Items = model.List.ToList(),
-            };
-            return Ok(outputModel);
+            return PaggingListResult(pagingParams, "todos", arr);
         }
 
         [HttpGet("Todos/{id}")]

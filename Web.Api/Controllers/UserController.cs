@@ -22,10 +22,9 @@ namespace Web.Api.Controllers
         [HttpGet("getUserData")]
         public IActionResult Get()
         {
-            var user = HttpContext.User;
-            var userID = user.FindFirst(ClaimTypes.NameIdentifier).Value;
-
+            var userID = _userService.GetContextUserId(HttpContext.User);
             var userModel = _userService.Get(userID);
+
             var userDto = new UserDto()
             {
                 Id = userModel.Id,

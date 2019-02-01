@@ -36,7 +36,7 @@ namespace Web.Api.Controllers
                 return BadRequest(new { password = "invalid password" });
             }
 
-            return _authService.GetAuthData(user.Id);
+            return _authService.GetAuthData(user);
         }
 
         [HttpPost("register")]
@@ -57,7 +57,7 @@ namespace Web.Api.Controllers
             };
             _userService.Add(user);
 
-            return _authService.GetAuthData(user.Id);
+            return _authService.GetAuthData(user);
         }
 
     }

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Web.Api.Services.Interface;
 using Web.Repository.Interfaces;
@@ -29,6 +31,11 @@ namespace Web.Api.Services
         public User GetSingle(string email)
         {
             return _unitOfWork.Users.Find(u => u.Email == email).FirstOrDefault();
+        }
+
+        public string GetContextUserId(ClaimsPrincipal userClaims)
+        {
+            return userClaims.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
 
         public bool IsEmailUniq(string email)
