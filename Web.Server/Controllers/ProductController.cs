@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using Web.Repository.Models.Product;
+using Web.Core.Models.Product;
 using Web.Server.Dtos;
 using Web.Server.Dtos.Commons;
 using Web.Server.Helpers.Pagging;

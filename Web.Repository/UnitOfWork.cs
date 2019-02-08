@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Web.Repository.Context;
-using Web.Repository.Interfaces;
-using Web.Repository.Models;
-using Web.Repository.Models.Product;
-using Web.Repository.Models.User;
+using Web.Core.Interfaces;
+using Web.Core.Models;
+using Web.Core.Models.Product;
+using Web.Core.Models.User;
 
-namespace Web.Repository.Implementations
+namespace Web.Repository
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {

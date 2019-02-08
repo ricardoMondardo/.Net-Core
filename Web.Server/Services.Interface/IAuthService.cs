@@ -1,5 +1,5 @@
 ﻿using Web.Server.Dtos.AuthData;
-using Web.Repository.Models.User;
+using Web.Core.Models.User;
 
 namespace Web.Server.Services.Interface
 {

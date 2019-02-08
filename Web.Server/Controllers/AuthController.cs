@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Web.Server.Dtos.AuthData;
 using Web.Server.Services.Interface;
-using Web.Repository.Models.User;
+using Web.Core.Models.User;
 
 namespace Web.Server.Controllers
 {

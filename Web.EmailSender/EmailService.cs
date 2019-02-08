@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Web.EmailSender.Interfaces;
 using Web.EmailSender.Models;
 
-namespace Web.EmailSender.Services
+namespace Web.EmailSender
 {
     public class EmailService : IEmailService
     {

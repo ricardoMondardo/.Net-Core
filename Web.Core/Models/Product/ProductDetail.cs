@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Web.Repository.Models.Product
+﻿namespace Web.Core.Models.Product
 {
     public class ProductDetail : IEntityBase
     {

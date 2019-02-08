@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Web.Server.Services.Interface;
-using Web.Repository.Interfaces;
-using Web.Repository.Models;
+using Web.Core.Interfaces;
+using Web.Core.Models;
 
 namespace Web.Server.Services
 {

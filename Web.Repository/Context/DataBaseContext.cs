@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Web.Repository.Models;
-using Web.Repository.Models.Product;
-using Web.Repository.Models.User;
+using Web.Core.Models;
+using Web.Core.Models.Product;
+using Web.Core.Models.User;
 
 namespace Web.Repository.Context
 {

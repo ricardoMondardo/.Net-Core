@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 using Web.Server.Services.Interface;
-using Web.Repository.Interfaces;
-using Web.Repository.Models.User;
+using Web.Core.Interfaces;
+using Web.Core.Models.User;
 
 namespace Web.Server.Services
 {

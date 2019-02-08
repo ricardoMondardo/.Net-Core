@@ -5,10 +5,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Web.Repository.Context;
-using Web.Repository.Interfaces;
-using Web.Repository.Models;
+using Web.Core.Interfaces;
+using Web.Core.Models;
 
-namespace Web.Repository.Implementations
+namespace Web.Repository
 {
     public class GenericRepository<TEntity> : IGerericRepository<TEntity> 
             where TEntity : class, IEntityBase, new()

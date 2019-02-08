@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Web.Repository.Models
+﻿namespace Web.Core.Models
 {
     public class Todo : IEntityBase
     {

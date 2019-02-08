@@ -7,7 +7,7 @@ using Web.Server.Dtos.Commons;
 using Web.Server.Dtos.Todo;
 using Web.Server.Helpers.Pagging;
 using Web.Server.Services;
-using Web.Repository.Models;
+using Web.Core.Models;
 using Xunit;
 
 namespace Web.Tests

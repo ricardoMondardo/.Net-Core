@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Web.Repository.Models.Product
+namespace Web.Core.Models.Product
 {
     public class Product : IEntityBase
     {

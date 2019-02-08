@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.EmailSender.Interfaces;
 
-namespace Web.EmailSender.Services
+namespace Web.EmailSender
 {
     public class EmailConfiguration : IEmailConfiguration
     {

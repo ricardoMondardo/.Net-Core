@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Web.Repository.Models.Product;
+using Web.Core.Models.Product;
 
 namespace Web.Server.Services
 {

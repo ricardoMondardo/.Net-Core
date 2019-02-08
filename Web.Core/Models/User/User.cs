@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Web.Repository.Models.User
+﻿namespace Web.Core.Models.User
 {
     public class User : IEntityBase
     {

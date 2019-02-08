@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Web.EmailSender.Interfaces;
-using Web.EmailSender.Services;
+using Web.EmailSender;
 using Web.Repository.Context;
-using Web.Repository.Interfaces;
+using Web.Core.Interfaces;
 using Web.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -19,7 +19,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Microsoft.IdentityModel.Logging;
 using System;
-using Web.Repository.Implementations;
+using Web.Repository;
 
 namespace Web.Server
 {
@@ -40,6 +40,7 @@ namespace Web.Server
         public void ConfigureServices(IServiceCollection services)
         {
 
+            #region Add Database Context
             if (Env.IsDevelopment())
             {
                 services.AddDbContext<DataBaseContext>(options =>
@@ -52,7 +53,9 @@ namespace Web.Server
                     options.UseSqlServer(
                         Configuration.GetConnectionString("ProdConnection")));
             }
+            #endregion
 
+            #region Authentication
             IdentityModelEventSource.ShowPII = true;
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -95,6 +98,7 @@ namespace Web.Server
                     Configuration.GetValue<int>("JWTLifespan")
                 )
             );
+            #endregion
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -115,7 +119,7 @@ namespace Web.Server
                 });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IUnitOfWork unitOfWork)
         {
 
             if (env.IsDevelopment())
@@ -125,8 +129,8 @@ namespace Web.Server
             else
             {
                 app.UseHsts();
-            }
-            app.UseHttpsRedirection();
+                app.UseHttpsRedirection();
+            }            
 
             //app.UseCors(builder => builder do it later
             //     .AllowAnyOrigin()
@@ -134,11 +138,13 @@ namespace Web.Server
             //     .AllowAnyHeader()
             //     .AllowCredentials()
             // );
-
+            
             app.UseAuthentication();
-
             app.UseStaticFiles();
-            app.UseMvc();
+
+            //app.UseGraphQL();
+
+            app.UseMvc();            
 
         }
     }

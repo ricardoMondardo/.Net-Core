@@ -4,7 +4,7 @@ using System.Linq;
 using Web.Server.Dtos.Todo;
 using Web.Server.Helpers.Pagging;
 using Web.Server.Services.Interface;
-using Web.Repository.Models;
+using Web.Core.Models;
 
 namespace Web.Server.Controllers
 {

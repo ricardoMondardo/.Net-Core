@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Web.Repository.Models;
-using Web.Repository.Models.Product;
-using Web.Repository.Models.User;
+﻿using System.Threading.Tasks;
+using Web.Core.Models;
+using Web.Core.Models.Product;
+using Web.Core.Models.User;
 
-namespace Web.Repository.Interfaces
+namespace Web.Core.Interfaces
 {
     public interface IUnitOfWork
     {

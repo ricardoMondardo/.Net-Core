@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Web.Repository.Models;
+using Web.Core.Models;
 
 namespace Web.Server.Services.Interface
 {

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Web.Repository.Models.Product;
+using Web.Core.Models.Product;
 
 namespace Web.Server.Dtos
 {

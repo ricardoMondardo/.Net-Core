@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using Web.Repository.Models.User;
+using Web.Core.Models.User;
 
 namespace Web.Server.Services.Interface
 {
