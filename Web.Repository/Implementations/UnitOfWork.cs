@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Web.Repository.Context;
-using Web.Repository.Implementations;
 using Web.Repository.Interfaces;
 using Web.Repository.Models;
 using Web.Repository.Models.Product;
 using Web.Repository.Models.User;
 
-namespace Web.Api.Repository.Implementations
+namespace Web.Repository.Implementations
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
@@ -24,16 +23,16 @@ namespace Web.Api.Repository.Implementations
 
         public IGerericRepository<Product> Products
         {
-            get { return _products ?? new GenericRepository<Product>(_context); }
+            get { return _products ?? (_products = new GenericRepository<Product>(_context)); }
         }
         public IGerericRepository<User> Users
         {
-            get { return _users ?? new GenericRepository<User>(_context); }
+            get { return _users ?? (_users = new GenericRepository<User>(_context)); }
         }
 
         public IGerericRepository<Todo> Todos
         {
-            get { return _todo ?? new GenericRepository<Todo>(_context);}
+            get { return _todo ?? (_todo = new GenericRepository<Todo>(_context));}
         }
 
         public void Save()

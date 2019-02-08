@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Web.Api.Repository.Implementations;
+using Web.Repository.Implementations;
 using Web.Repository.Context;
 
 

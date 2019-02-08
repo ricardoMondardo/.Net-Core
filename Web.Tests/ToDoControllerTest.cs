@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Moq;
-using Web.Api.Controllers;
-using Web.Api.Dtos.Commons;
-using Web.Api.Dtos.Todo;
-using Web.Api.Helpers.Pagging;
-using Web.Api.Services;
+using Web.Server.Controllers;
+using Web.Server.Dtos.Commons;
+using Web.Server.Dtos.Todo;
+using Web.Server.Helpers.Pagging;
+using Web.Server.Services;
 using Web.Repository.Models;
 using Xunit;
 

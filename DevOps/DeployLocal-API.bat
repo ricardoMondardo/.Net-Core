@@ -1,4 +1,4 @@
-cd C:\projects\Solution.Net.Core\Web.Api
+cd C:\projects\Solution.Net.Core\Web.Server
 
 dotnet clean
 
