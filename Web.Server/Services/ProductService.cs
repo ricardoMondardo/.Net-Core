@@ -17,12 +17,21 @@ namespace Web.Server.Services
             {
                 Add(new List<Product>()
                 {
-                    new Product() { Description = "Abc"},
-                    new Product() { Description = "Bac"},
-                    new Product() { Description = "Caa"},
-                    new Product() { Description = "Da1"},
-                    new Product() { Description = "Ea5"},
-                    new Product() { Description = "Fac"}
+                    new Product() { Description = "Test 1"},
+                    new Product() { Description = "Test 2"},
+                    new Product() { Description = "Test 3"},
+                    new Product() { Description = "Test 4"},
+                    new Product() { Description = "Test 5"},
+                    new Product() { Description = "Test 6"},
+                    new Product() { Description = "Test 7"},
+                    new Product() { Description = "Test 8"},
+                    new Product() { Description = "Test 9"},
+                    new Product() { Description = "Test 10"},
+                    new Product() { Description = "Test 11"},
+                    new Product() { Description = "Test 12"},
+                    new Product() { Description = "Test 13"},
+                    new Product() { Description = "Test 14"},
+                    new Product() { Description = "Test 15"}
                 });
             }
 
