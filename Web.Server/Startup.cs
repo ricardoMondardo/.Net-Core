@@ -130,21 +130,24 @@ namespace Web.Server
             {
                 app.UseHsts();
                 app.UseHttpsRedirection();
-            }            
+            }
 
-            //app.UseCors(builder => builder do it later
-            //     .AllowAnyOrigin()
-            //     .AllowAnyMethod()
-            //     .AllowAnyHeader()
-            //     .AllowCredentials()
-            // );
-            
+            app.UseCors(builder => builder
+                 .AllowAnyOrigin()
+             );
+
             app.UseAuthentication();
             app.UseStaticFiles();
 
             //app.UseGraphQL();
 
-            app.UseMvc();            
+            app.UseMvc( routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
+            });            
 
         }
     }

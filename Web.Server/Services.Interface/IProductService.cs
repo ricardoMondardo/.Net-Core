@@ -16,5 +16,7 @@ namespace Web.Server.Services
         List<Product> GetAll();
         IQueryable<Product> GetAllQueryable();
 
+        IQueryable<Product> GetAllQueryable(string query);
+
     }
 }

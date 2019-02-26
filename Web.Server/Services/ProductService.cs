@@ -71,5 +71,9 @@ namespace Web.Server.Services
             return _unitOfWork.Products.Find().AsQueryable();
         }
 
+        public IQueryable<Product> GetAllQueryable(string query)
+        {
+            return _unitOfWork.Products.Find(x => x.Description.Contains(query)).AsQueryable();
+        }
     }
 }

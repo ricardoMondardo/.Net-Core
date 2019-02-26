@@ -11,7 +11,7 @@ namespace Web.Server.Controllers
 {
     [Produces("application/json")]
     [Route("api/resources/")]
-    [Authorize]
+    //[Authorize]
     public class ProductController : BasePaggingController<ProductDTO>
     {
         private IProductService _productService;
@@ -22,14 +22,23 @@ namespace Web.Server.Controllers
         }
 
         #region Methods Get
-        [HttpGet("products", Name = "products")]
+        [HttpGet("products")]
         [ProducesResponseType(200, Type = typeof(PagedList<ProductDTO>))]
-        public IActionResult Products(PagingParams pagingParams)
+        public IActionResult ProductByQuery(string q, PagingParams pagingParams)
         {
-            var arr = _productService
-                .GetAllQueryable()
-                .Select(x => ToConvertDTO(x));
+            IQueryable<ProductDTO> arr = null;
 
+            if (q == null)
+            {
+                arr = _productService
+                    .GetAllQueryable()
+                    .Select(x => ToConvertDTO(x));
+            } else
+            {
+                arr = _productService
+                    .GetAllQueryable(q)
+                    .Select(x => ToConvertDTO(x));
+            }
 
             return PaggingListResult(pagingParams, "products", arr);
         }

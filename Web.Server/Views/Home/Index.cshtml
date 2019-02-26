@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Preview</title>
+</head>
+<body>
+    <div id="vue-container">
+        <x-conecta p-url="/api/resources/products/">
+
+            <template slot="title">
+                Title
+            </template>
+
+            <template slot="subTitle">
+                SubTitle
+            </template>
+
+            <template slot="imgBanner">
+                <img src="~/img/banner.jpeg" />
+            </template>
+
+            <template slot="cardLabelTitle">
+                Title
+            </template>
+
+            <template slot="cardLabelCategory">
+                Category
+            </template>
+
+        </x-conecta>
+    </div>
+
+    <script src="~/js/bundle.js"></script>
+
+</body>
+</html>
+
