@@ -10,12 +10,12 @@ namespace Web.Server.Controllers
 {
     [Route("api/emailSender/")]
     [ApiController]
-    public class EmailSenderController : ControllerBase
+    public class ApiEmailSenderController : ControllerBase
     {
 
         private IEmailService _emailService;
 
-        public EmailSenderController(IEmailService emailService)
+        public ApiEmailSenderController(IEmailService emailService)
         {
             _emailService = emailService;
         }

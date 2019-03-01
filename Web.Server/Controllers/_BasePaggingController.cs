@@ -8,7 +8,7 @@ using Web.Server.Helpers.Pagging;
 
 namespace Web.Server.Controllers
 {
-    public class BasePaggingController<T> : Controller where T : class   
+    public class _BasePaggingController<T> : Controller where T : class   
     {
         private readonly IUrlHelper _urlHelper;
 
@@ -28,7 +28,7 @@ namespace Web.Server.Controllers
             return Ok(outputModel);
         }
 
-        public BasePaggingController(IUrlHelper urlHelper)
+        public _BasePaggingController(IUrlHelper urlHelper)
         {
             _urlHelper = urlHelper;
         }

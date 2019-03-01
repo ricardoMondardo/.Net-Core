@@ -12,11 +12,11 @@ namespace Web.Server.Controllers
     [Produces("application/json")]
     [Route("api/resources/")]
     //[Authorize]
-    public class ProductController : BasePaggingController<ProductDTO>
+    public class ApiProductController : _BasePaggingController<ProductDTO>
     {
         private IProductService _productService;
 
-        public ProductController(IProductService productService, IUrlHelper urlHelper) : base(urlHelper)
+        public ApiProductController(IProductService productService, IUrlHelper urlHelper) : base(urlHelper)
         {
             _productService = productService;
         }

@@ -12,11 +12,11 @@ namespace Web.Server.Controllers
 {
 
     [Route("api/graphql/")]
-    public class GraphQLController : Controller
+    public class ApiGraphQLController : Controller
     {
 
         private readonly IUnitOfWork _unitOfWork;
-        public GraphQLController(IUnitOfWork unitOfWork)
+        public ApiGraphQLController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

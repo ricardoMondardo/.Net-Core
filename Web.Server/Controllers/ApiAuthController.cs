@@ -8,11 +8,11 @@ namespace Web.Server.Controllers
 {
     [Route("api/Auth/")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class ApiAuthController : ControllerBase
     {
         IAuthService _authService;
         IUserService _userService;
-        public AuthController(IAuthService authService, IUserService userService)
+        public ApiAuthController(IAuthService authService, IUserService userService)
         {
             this._authService = authService;
             this._userService = userService;

@@ -29,7 +29,7 @@ namespace Web.Tests
             Seed();
 
             //Controller
-            var todoController = new TodoController(_todoService, _httpHelper.UrlHelper);
+            var todoController = new ApiTodoController(_todoService, _httpHelper.UrlHelper);
             todoController.ControllerContext.HttpContext = new DefaultHttpContext();
             OkObjectResult result = todoController.Todos(new PagingParams()) as OkObjectResult;
 

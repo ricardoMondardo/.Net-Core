@@ -77,7 +77,10 @@ namespace Web.Server.Services
 
         public IQueryable<Product> GetAllQueryable()
         {
-            return _unitOfWork.Products.Find().AsQueryable();
+            return _unitOfWork.Products
+                    .Find()
+                    .OrderBy(x => x.Description)
+                    .AsQueryable();
         }
 
         public IQueryable<Product> GetAllQueryable(string query)
