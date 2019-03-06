@@ -8,7 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{6CBF22B1-2F36-41B5-8AC3-8B3B1E1A9DAF}"
 	ProjectSection(SolutionItems) = preProject
 		DevOps\createCertificate.ps1 = DevOps\createCertificate.ps1
-		DevOps\DeployLocal-API.bat = DevOps\DeployLocal-API.bat
+		update-bundles.ps1 = update-bundles.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.EmailSender", "Web.EmailSender\Web.EmailSender.csproj", "{37499CF4-657E-4A02-8167-05C12211CED4}"
@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Repository", "Web.Repos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Tests", "Web.Tests\Web.Tests.csproj", "{9E87A254-919F-4F1A-951E-5A9E2922BBD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.GraphQL", "Web.GraphQL\Web.GraphQL.csproj", "{07013922-B973-4DC8-AB96-060F4CCEAC2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.GraphQL", "Web.GraphQL\Web.GraphQL.csproj", "{07013922-B973-4DC8-AB96-060F4CCEAC2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Core", "Web.Core\Web.Core.csproj", "{17970546-3E19-4456-B8A6-3AB2B35580D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Core", "Web.Core\Web.Core.csproj", "{17970546-3E19-4456-B8A6-3AB2B35580D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

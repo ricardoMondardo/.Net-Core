@@ -1,15 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Preview</title>
 </head>
 <body>
-    <h1> Preview </h1>
 
-    @await Html.PartialAsync("Nav")
+    <div id="vue-container">
+         @await Html.PartialAsync("nav")
+        <x-home></x-home>
+    </div>
 
+    <script src="~/js/home.bundle.js"></script>
 </body>
 </html>

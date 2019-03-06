@@ -6,14 +6,16 @@
     <title>Preview</title>
 </head>
 <body>
-    <h1> Account </h1>
-    <div>
-        <a href="/"> Back </a>
-    </div>    
-    <hr />
 
+    <div id="vue-container">
+        @await Html.PartialAsync("nav")
+    </div>    
+
+    <h1> Account </h1>
     <div>
         <span>Welcome Guest</span>
     </div>
+
+    <script src="~/js/account.bundle.js"></script>
 </body>
 </html>

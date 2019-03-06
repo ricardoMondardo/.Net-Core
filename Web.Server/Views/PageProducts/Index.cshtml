@@ -7,7 +7,10 @@
 </head>
 <body>
     <div id="vue-container">
-        <x-conecta p-url="/api/resources/products/">
+
+        @await Html.PartialAsync("nav")
+
+        <x-search p-url="/api/resources/products/">
 
             <template slot="title">
                 Title
@@ -29,10 +32,10 @@
                 Category
             </template>
 
-        </x-conecta>
+        </x-search>
     </div>
 
-    <script src="~/js/bundle.js"></script>
+    <script src="~/js/search.bundle.js"></script>
 
 </body>
 </html>
