@@ -134,6 +134,7 @@ namespace Web.Server
 
             app.UseCors(builder => builder
                  .AllowAnyOrigin()
+                 .AllowAnyHeader()
              );
 
             app.UseAuthentication();

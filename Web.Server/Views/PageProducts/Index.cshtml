@@ -10,28 +10,12 @@
 
         @await Html.PartialAsync("nav")
 
-        <x-search p-url="/api/resources/products/">
-
-            <template slot="title">
-                Title
-            </template>
-
-            <template slot="subTitle">
-                SubTitle
-            </template>
-
-            <template slot="imgBanner">
-                <img src="~/img/banner.jpeg" />
-            </template>
-
-            <template slot="cardLabelTitle">
-                Title
-            </template>
-
-            <template slot="cardLabelCategory">
-                Category
-            </template>
-
+        <x-search p-url="/api/resources/products/"
+                  p-title="Title"
+                  p-subtitle="SubTitle"
+                  p-imgbanner="/img/banner.jpeg"
+                  p-cardlabeltitle="Title"
+                  p-cardlabelcategory="Category">
         </x-search>
     </div>
 
