@@ -11,7 +11,7 @@ namespace Web.Server.Controllers
 {
     [Produces("application/json")]
     [Route("api/resources/")]
-    //[Authorize]
+    [Authorize]
     public class ApiProductController : _BasePaggingController<ProductDTO>
     {
         private IProductService _productService;
