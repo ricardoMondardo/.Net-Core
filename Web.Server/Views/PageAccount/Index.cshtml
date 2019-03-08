@@ -7,9 +7,10 @@
 </head>
 <body>
 
-    <div id="vue-container">
-        @await Html.PartialAsync("nav")
-        <x-account></x-account>
+    <div id="vue-container">        
+        <x-account>
+            @await Html.PartialAsync("nav")
+        </x-account>
     </div>        
 
     <script src="~/js/account.bundle.js"></script>

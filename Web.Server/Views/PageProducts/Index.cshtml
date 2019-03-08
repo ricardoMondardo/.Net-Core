@@ -6,16 +6,15 @@
     <title>Preview</title>
 </head>
 <body>
-    <div id="vue-container">
-
-        @await Html.PartialAsync("nav")
-
+    <div id="vue-container">        
         <x-search p-url="/api/resources/products/"
                   p-title="Title"
                   p-subtitle="SubTitle"
                   p-imgbanner="/img/banner.jpeg"
                   p-cardlabeltitle="Title"
                   p-cardlabelcategory="Category">
+
+            @await Html.PartialAsync("nav")
         </x-search>
     </div>
 

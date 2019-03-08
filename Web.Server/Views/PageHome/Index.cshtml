@@ -7,9 +7,10 @@
 </head>
 <body>
 
-    <div id="vue-container">
-         @await Html.PartialAsync("nav")
-        <x-home></x-home>
+    <div id="vue-container">         
+        <x-home>
+            @await Html.PartialAsync("nav")
+        </x-home>
     </div>
 
     <script src="~/js/home.bundle.js"></script>
