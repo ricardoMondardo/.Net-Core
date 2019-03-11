@@ -8,7 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{6CBF22B1-2F36-41B5-8AC3-8B3B1E1A9DAF}"
 	ProjectSection(SolutionItems) = preProject
 		DevOps\createCertificate.ps1 = DevOps\createCertificate.ps1
-		update-bundles.ps1 = update-bundles.ps1
+		DevOps\local-deploy-and-run.ps1 = DevOps\local-deploy-and-run.ps1
+		DevOps\update-bundles.ps1 = DevOps\update-bundles.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.EmailSender", "Web.EmailSender\Web.EmailSender.csproj", "{37499CF4-657E-4A02-8167-05C12211CED4}"

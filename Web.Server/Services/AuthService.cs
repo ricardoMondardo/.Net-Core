@@ -44,7 +44,7 @@ namespace Web.Server.Services
             return new AuthDataDto
             {
                 Token = tokenString,
-                TokenExpirationTime = ((DateTimeOffset)expirationTime).ToUnixTimeSeconds(),
+                TokenExpirationTime = ((DateTimeOffset)expirationTime).ToUnixTimeMilliseconds(),
                 Id = user.Id
             };
         }
