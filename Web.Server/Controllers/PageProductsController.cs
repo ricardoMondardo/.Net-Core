@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Server.Controllers
 {
+    [Route("products")]
     public class PageProductsController : Controller
     {
         public IActionResult Index()
