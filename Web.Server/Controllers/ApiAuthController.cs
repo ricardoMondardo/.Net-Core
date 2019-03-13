@@ -34,7 +34,7 @@ namespace Web.Server.Controllers
             var passwordValid = _authService.VerifyPassword(model.Password, user.Password);
             if (!passwordValid)
             {
-                return Unauthorized(new { password = "invalid password" });
+                return Unauthorized(new { msg = "invalid password" });
             }
 
             return _authService.GetAuthData(user);
