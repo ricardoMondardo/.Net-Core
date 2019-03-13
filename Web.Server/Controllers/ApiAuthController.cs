@@ -28,7 +28,7 @@ namespace Web.Server.Controllers
 
             if (user == null)
             {
-                return BadRequest(new { email = "no user with this email" });
+                return BadRequest(new { msg = "no user with this email" });
             }
 
             var passwordValid = _authService.VerifyPassword(model.Password, user.Password);
@@ -46,9 +46,9 @@ namespace Web.Server.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var emailUniq = _userService.IsEmailUniq(model.Email);
-            if (!emailUniq) return BadRequest(new { email = "user with this email already exists" });
+            if (!emailUniq) return BadRequest(new { msg = "email already exists" });
             var usernameUniq = _userService.IsUsernameUniq(model.Username);
-            if (!usernameUniq) return BadRequest(new { username = "user with this email already exists" });
+            if (!usernameUniq) return BadRequest(new { msg = "user name already exists" });
 
             var user = new User
             {
