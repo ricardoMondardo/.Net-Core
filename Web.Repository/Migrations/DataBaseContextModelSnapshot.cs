@@ -19,7 +19,7 @@ namespace Web.Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Web.Repository.Models.Product.Product", b =>
+            modelBuilder.Entity("Web.Core.Models.Product.Product", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -42,10 +42,10 @@ namespace Web.Repository.Migrations
 
                     b.HasIndex("ProductGradeId1");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Web.Repository.Models.Product.ProductDetail", b =>
+            modelBuilder.Entity("Web.Core.Models.Product.ProductDetail", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -61,7 +61,7 @@ namespace Web.Repository.Migrations
                     b.ToTable("ProductDetail");
                 });
 
-            modelBuilder.Entity("Web.Repository.Models.Product.ProductGrade", b =>
+            modelBuilder.Entity("Web.Core.Models.Product.ProductGrade", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -73,7 +73,7 @@ namespace Web.Repository.Migrations
                     b.ToTable("ProductGrade");
                 });
 
-            modelBuilder.Entity("Web.Repository.Models.Product.ProdutItem", b =>
+            modelBuilder.Entity("Web.Core.Models.Product.ProdutItem", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -89,7 +89,7 @@ namespace Web.Repository.Migrations
                     b.ToTable("ProdutItem");
                 });
 
-            modelBuilder.Entity("Web.Repository.Models.Todo", b =>
+            modelBuilder.Entity("Web.Core.Models.Todo", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -102,13 +102,17 @@ namespace Web.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Todo");
+                    b.ToTable("Todos");
                 });
 
-            modelBuilder.Entity("Web.Repository.Models.User.User", b =>
+            modelBuilder.Entity("Web.Core.Models.User.User", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Active");
+
+                    b.Property<int>("ActiveCode");
 
                     b.Property<string>("Email");
 
@@ -118,23 +122,23 @@ namespace Web.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Web.Repository.Models.Product.Product", b =>
+            modelBuilder.Entity("Web.Core.Models.Product.Product", b =>
                 {
-                    b.HasOne("Web.Repository.Models.Product.ProductDetail", "ProductDetail")
+                    b.HasOne("Web.Core.Models.Product.ProductDetail", "ProductDetail")
                         .WithMany()
                         .HasForeignKey("ProductDetailId");
 
-                    b.HasOne("Web.Repository.Models.Product.ProductGrade", "ProductGrade")
+                    b.HasOne("Web.Core.Models.Product.ProductGrade", "ProductGrade")
                         .WithMany()
                         .HasForeignKey("ProductGradeId1");
                 });
 
-            modelBuilder.Entity("Web.Repository.Models.Product.ProdutItem", b =>
+            modelBuilder.Entity("Web.Core.Models.Product.ProdutItem", b =>
                 {
-                    b.HasOne("Web.Repository.Models.Product.Product", "Product")
+                    b.HasOne("Web.Core.Models.Product.Product", "Product")
                         .WithMany("ProdutItens")
                         .HasForeignKey("ProductId");
                 });

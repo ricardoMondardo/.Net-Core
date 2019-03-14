@@ -12,9 +12,9 @@ namespace Web.Repository.Context
         {
         }
 
-        public DbSet<Product> Product { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<Todo> Todo { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Todo> Todos { get; set; }
 
     }
 }

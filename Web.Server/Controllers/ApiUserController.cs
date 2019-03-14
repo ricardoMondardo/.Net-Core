@@ -29,7 +29,8 @@ namespace Web.Server.Controllers
             {
                 Id = userModel.Id,
                 Name = userModel.UserName + "**",
-                Email = userModel.Email
+                Email = userModel.Email,
+                Active = userModel.Active
             };
 
             return Ok(userDto);

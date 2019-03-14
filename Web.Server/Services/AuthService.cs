@@ -23,14 +23,12 @@ namespace Web.Server.Services
         public AuthDataDto GetAuthData(User user)
         {
             var expirationTime = DateTime.Now.AddMinutes(_jwtLifespan);
-            //var expirationTime = DateTime.UtcNow.AddSeconds(_jwtLifespan);
-
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret));
             var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256Signature);
 
             var tokeOptions = new JwtSecurityToken(
-                     issuer: "http://localhost:5000",
-                     audience: "http://localhost:5000",
+                     issuer: "rmondardo",
+                     audience: "rmondardo",
                      claims: new List<Claim>() {
                          new Claim(ClaimTypes.NameIdentifier, user.Id),
                          new Claim(ClaimTypes.Name, user.UserName)

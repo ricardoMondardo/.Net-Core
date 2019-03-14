@@ -69,8 +69,8 @@ namespace Web.Server
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
 
-                    ValidIssuer = "http://localhost:5000",
-                    ValidAudience = "http://localhost:5000",
+                    ValidIssuer = "rmondardo",
+                    ValidAudience = "rmondardo",
 
                     ClockSkew = TimeSpan.Zero, //Expires right after expiration date
 
