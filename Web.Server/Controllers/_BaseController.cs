@@ -14,7 +14,7 @@ namespace Web.Server.Controllers
             return BadRequest(new BadRequestModel()
             {
                 Title = msg,
-                Erros = new List<ErrorModel>() { }
+                Errors = new List<ErrorModel>() { }
             });
         }
     }

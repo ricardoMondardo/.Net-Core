@@ -7,7 +7,7 @@ namespace Web.Server.Helpers
 {
     public class BadRequestModel
     {
-        public List<ErrorModel> Erros { get; set; }
+        public List<ErrorModel> Errors { get; set; }
         public string Title { get; set; }
     }
 
