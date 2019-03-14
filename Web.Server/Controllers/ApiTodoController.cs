@@ -11,7 +11,7 @@ namespace Web.Server.Controllers
     [Produces("application/json")]
     [Route("api/resources/")]
     [Authorize]
-    public class ApiTodoController : _BasePaggingController<TodoDto>
+    public class ApiTodoController : _BaseApiPaggingController<TodoDto>
     {
 
         private readonly ITodoService _todoService;

@@ -8,9 +8,14 @@ using Web.Server.Helpers.Pagging;
 
 namespace Web.Server.Controllers
 {
-    public class _BasePaggingController<T> : Controller where T : class   
+    public class _BaseApiPaggingController<T> : ControllerBase where T : class   
     {
         private readonly IUrlHelper _urlHelper;
+
+        public _BaseApiPaggingController(IUrlHelper urlHelper)
+        {
+            _urlHelper = urlHelper;
+        }
 
         public IActionResult PaggingListResult(PagingParams pagingParams, string routeName, IQueryable<T> query)
         {   
@@ -26,11 +31,6 @@ namespace Web.Server.Controllers
                 Items = paggingModel.List.ToList(),
             };
             return Ok(outputModel);
-        }
-
-        public _BasePaggingController(IUrlHelper urlHelper)
-        {
-            _urlHelper = urlHelper;
         }
 
         public PagedList<T> Pagging(PagingParams pagingParams, IQueryable<T> query)

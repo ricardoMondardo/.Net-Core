@@ -12,7 +12,7 @@ namespace Web.Server.Controllers
 {
 
     [Route("api/graphql/")]
-    public class ApiGraphQLController : Controller
+    public class ApiGraphQLController : ControllerBase
     {
 
         private readonly IUnitOfWork _unitOfWork;

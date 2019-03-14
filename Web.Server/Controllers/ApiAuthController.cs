@@ -9,7 +9,7 @@ namespace Web.Server.Controllers
 {
     [Route("api/Auth/")]
     [ApiController]
-    public class ApiAuthController : ControllerBase
+    public class ApiAuthController : _BaseController
     {
         IAuthService _authService;
         IUserService _userService;
@@ -26,15 +26,11 @@ namespace Web.Server.Controllers
 
             var user = _userService.GetSingle(model.Email);
 
-            if (user == null)
+            if (user == null) return BadRequestCustom("Email or Password invalid");
+            
+            if (!_authService.VerifyPassword(model.Password, user.Password))
             {
-                return BadRequest(new { msg = "no user with this email" });
-            }
-
-            var passwordValid = _authService.VerifyPassword(model.Password, user.Password);
-            if (!passwordValid)
-            {
-                return Unauthorized(new { msg = "invalid password" });
+                return Unauthorized(new { msg = "Email or Password invalid" });
             }
 
             return _authService.GetAuthData(user);
@@ -44,11 +40,10 @@ namespace Web.Server.Controllers
         public ActionResult<AuthDataDto> Post([FromBody]RegisterDto model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
+            
+            if (!_userService.IsEmailUniq(model.Email)) return BadRequestCustom("Email already exists");
 
-            var emailUniq = _userService.IsEmailUniq(model.Email);
-            if (!emailUniq) return BadRequest(new { msg = "email already exists" });
-            var usernameUniq = _userService.IsUsernameUniq(model.Username);
-            if (!usernameUniq) return BadRequest(new { msg = "user name already exists" });
+            if (!_userService.IsUsernameUniq(model.Username)) return BadRequestCustom("User name already exists");
 
             var user = new User
             {

@@ -9,7 +9,7 @@ namespace Web.Server.Controllers
     [Produces("application/json")]
     [Route("api/user/")]
     [Authorize]
-    public class ApiUserController : Controller 
+    public class ApiUserController : ControllerBase 
     {
 
         private IUserService _userService;
