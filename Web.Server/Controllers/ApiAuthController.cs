@@ -41,6 +41,23 @@ namespace Web.Server.Controllers
             return _authService.GetAuthData(user);
         }
 
+        [HttpPost("loginWithActiveCode")]
+        public ActionResult<AuthDataDto> PostWithActiveCode([FromBody]LoginDto model)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var user = _userService.GetSingle(model.Email);
+
+            if (user == null) return BadRequestCustom("Email not found");
+
+            if (user.ActiveCode != model.Password)
+            {
+                return Unauthorized(new { msg = "Email or Password invalid" });
+            }
+
+            return _authService.GetAuthData(user);
+        }
+
         [HttpPost("register")]
         public ActionResult<AuthDataDto> Post([FromBody]RegisterDto model)
         {
@@ -61,30 +78,52 @@ namespace Web.Server.Controllers
                 ActiveCode = activeCode
             };
             _userService.Add(user);
-
-            var userData = _authService.GetAuthData(user);
-            var link = string.Format("https://rmondardo.com/account/active?email={0}&token={1}", model.Email, activeCode);
-
-            var emailMsg = new EmailMessage()
-            {
-                ToAddresses = new List<EmailAddress>()
-                {
-                    new EmailAddress() { Name = model.Username, Address = model.Email }
-                },
-                Subject = "Welcome to rmondardo.com",
-                Content = string.Format("Link to active: {0}", link)
-            };
-
+                        
             try
             {
-                _emailService.Send(emailMsg);
+                _emailService.SendByRest(BuildEmailMessage(model.Username, model.Email, activeCode));
             }
             catch (Exception ex)
             {
                 //Log somewhere
             }
 
-            return userData;
+            return _authService.GetAuthData(user);
+        }
+
+        [HttpPost("sendlinkactive")]
+        public ActionResult SendLinkActive([FromQuery] string email)
+        {
+            var user = _userService.GetSingle(email);
+
+            if (user == null) return NotFound();
+
+            try
+            {
+                _emailService.SendByRest(BuildEmailMessage(email, email, user.ActiveCode));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new responseDTO { msg = ex.Message });
+            }
+
+            return Ok(string.Format("Email has sent to: {0}", email));
+        }
+
+        private EmailMessage BuildEmailMessage(string name, string email, string activeCode)
+        {
+            var baseUrl = HttpContext.Request.Host;
+            var link = string.Format("https://{0}/account/active?email={1}&token={2}", baseUrl, email, activeCode);
+
+            return new EmailMessage()
+            {
+                ToAddresses = new List<EmailAddress>()
+                {
+                    new EmailAddress() { Name = name, Address = email }
+                },
+                Subject = "Welcome to rmondardo.com",
+                Content = string.Format("Link to active: {0}", link)
+            };
         }
 
     }

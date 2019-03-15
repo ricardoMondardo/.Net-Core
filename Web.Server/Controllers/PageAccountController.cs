@@ -22,8 +22,8 @@ namespace Web.Server.Controllers
         {
             var model = new UserViewModel()
             {
-                IsUserActive = false,
-                WelcomeMsg = "Welcome User!"
+                ActiveCode = "",
+                ComeFromActiveLink = false
             };
 
             return View("~/views/pageaccount/index.cshtml", model);
@@ -34,8 +34,9 @@ namespace Web.Server.Controllers
         {
             var result = _userService.ActiveUser(email, token);
             var model = new UserViewModel() {
-                IsUserActive = result,
-                WelcomeMsg = result ? "your account is active now, please log in" : "Sorry, you need to active your account"
+                Email = email,
+                ActiveCode = result ? token : "",
+                ComeFromActiveLink = true
             };
 
             return View("~/views/pageaccount/index.cshtml", model);
