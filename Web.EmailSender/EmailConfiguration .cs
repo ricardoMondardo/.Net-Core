@@ -8,6 +8,14 @@ namespace Web.EmailSender
 {
     public class EmailConfiguration : IEmailConfiguration
     {
+        //Rest
+        public string ApiKey { get; set; }
+        public string ApiBaseUri { get; set; }
+        public string RequestUri { get; set; }
+        public string From { get; set; }
+
+
+        //SOAP
         public string SmtpServer { get; set; }
         public int SmtpPort { get; set; }
         public string SmtpUsername { get; set; }

@@ -100,6 +100,8 @@ namespace Web.Server
             );
             #endregion
 
+            services.AddHttpClient();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<IProductService, ProductService>();

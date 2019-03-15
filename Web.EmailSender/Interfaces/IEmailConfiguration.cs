@@ -7,6 +7,13 @@ namespace Web.EmailSender.Interfaces
 {
     public interface IEmailConfiguration
     {
+        //Rest
+        string ApiKey { get; set; }
+        string ApiBaseUri { get; set; }
+        string RequestUri { get; set; }
+        string From { get; set; }
+
+        //SOAP
         string SmtpServer { get; }
         int SmtpPort { get; }
         string SmtpUsername { get; set; }

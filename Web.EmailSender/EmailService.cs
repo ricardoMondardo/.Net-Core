@@ -5,6 +5,10 @@ using MimeKit.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Web.EmailSender.Interfaces;
 using Web.EmailSender.Models;
@@ -73,6 +77,35 @@ namespace Web.EmailSender
 
                 emailClient.Disconnect(true);
             }
+        }
+
+        public async Task<HttpStatusCode> SendByRest(EmailMessage emailMessage)
+        {
+
+            var toEmail = emailMessage.ToAddresses.FirstOrDefault();
+
+            using (var client = new HttpClient { BaseAddress = new Uri(_emailConfiguration.ApiBaseUri) })
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                    Convert.ToBase64String(Encoding.ASCII.GetBytes(_emailConfiguration.ApiKey)));
+
+                var form = new Dictionary<string, string>();
+
+                form["from"] = _emailConfiguration.From;
+                form["subject"] = emailMessage.Subject;
+                form["text"] = emailMessage.Content;
+                form["to"] = string.Format("{0} <{1}>", toEmail.Name, toEmail.Address );
+                form["to"] = "Ricardo <ricardo.mondardo@valtech.com>";
+
+                var content = new FormUrlEncodedContent(form);                
+
+                HttpResponseMessage response = await client.PostAsync(_emailConfiguration.RequestUri, content).ConfigureAwait(false);
+
+                return response.StatusCode;
+                
+                
+            }
+
         }
     }
 }
