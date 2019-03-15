@@ -112,7 +112,7 @@ namespace Web.Repository.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<int>("ActiveCode");
+                    b.Property<string>("ActiveCode");
 
                     b.Property<string>("Email");
 

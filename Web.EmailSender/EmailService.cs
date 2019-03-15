@@ -95,7 +95,7 @@ namespace Web.EmailSender
                 form["subject"] = emailMessage.Subject;
                 form["text"] = emailMessage.Content;
                 form["to"] = string.Format("{0} <{1}>", toEmail.Name, toEmail.Address );
-                form["to"] = "Ricardo <ricardo.mondardo@valtech.com>";
+                //form["to"] = "ric <ricardo9300@gmail.com>, ric <darline@valtech.com>";
 
                 var content = new FormUrlEncodedContent(form);                
 

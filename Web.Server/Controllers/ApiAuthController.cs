@@ -50,7 +50,7 @@ namespace Web.Server.Controllers
 
             if (!_userService.IsUsernameUniq(model.Username)) return BadRequestCustom("User name already exists");
 
-            var activeCode = new Random().Next(1000);
+            var activeCode = Guid.NewGuid().ToString();
 
             var user = new User
             {
@@ -63,18 +63,16 @@ namespace Web.Server.Controllers
             _userService.Add(user);
 
             var userData = _authService.GetAuthData(user);
+            var link = string.Format("https://rmondardo.com/account/active?email={0}&token={1}", model.Email, activeCode);
+
             var emailMsg = new EmailMessage()
             {
                 ToAddresses = new List<EmailAddress>()
                 {
                     new EmailAddress() { Name = model.Username, Address = model.Email }
                 },
-                FromAddresses = new List<EmailAddress>()
-                {
-                    new EmailAddress() { Name = "Ricardo", Address = "noreply@ricardo.com"}
-                },
                 Subject = "Welcome to rmondardo.com",
-                Content = string.Format("Code to active: {0}", activeCode)
+                Content = string.Format("Link to active: {0}", link)
             };
 
             try

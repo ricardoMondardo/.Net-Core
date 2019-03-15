@@ -3,6 +3,7 @@ using System.Security.Claims;
 using Web.Server.Services.Interface;
 using Web.Core.Interfaces;
 using Web.Core.Models.User;
+using System;
 
 namespace Web.Server.Services
 {
@@ -22,6 +23,25 @@ namespace Web.Server.Services
         public User Get(string id)
         {
             return _unitOfWork.Users.Get(id);
+        }
+
+        public bool ActiveUser(string email, string token)
+        {
+            var user = GetSingle(email);
+
+            if (user == null) return false;
+
+            if (user.ActiveCode == token)
+            {
+                user.Active = true;                
+            } else {
+                user.Active = false;
+                user.ActiveCode = Guid.NewGuid().ToString();
+            }
+
+            _unitOfWork.Save();
+
+            return user.Active;
         }
 
         public User GetSingle(string email)

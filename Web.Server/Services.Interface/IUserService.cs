@@ -11,5 +11,6 @@ namespace Web.Server.Services.Interface
         User GetSingle(string email);
         User Get(string Id);
         string GetContextUserId(ClaimsPrincipal userClaims);
+        bool ActiveUser(string email, string token);
     }
 }

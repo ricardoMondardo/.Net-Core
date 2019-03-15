@@ -55,7 +55,7 @@ namespace Web.Repository.Migrations
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
                     Active = table.Column<bool>(nullable: false),
-                    ActiveCode = table.Column<int>(nullable: false)
+                    ActiveCode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

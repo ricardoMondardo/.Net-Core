@@ -10,7 +10,7 @@ using Web.Repository.Context;
 namespace Web.Repository.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20190314194504_initialMigration")]
+    [Migration("20190315185738_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -114,7 +114,7 @@ namespace Web.Repository.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<int>("ActiveCode");
+                    b.Property<string>("ActiveCode");
 
                     b.Property<string>("Email");
 
