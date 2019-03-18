@@ -25,6 +25,19 @@ namespace Web.Server.Services
             return _unitOfWork.Users.Get(id);
         }
 
+        public bool UpdateActiveCode(string email)
+        {
+            var user = GetSingle(email);
+
+            if (user == null) return false;
+
+            user.ActiveCode = Guid.NewGuid().ToString();
+            _unitOfWork.Save();
+
+            return true;                    
+
+        }
+
         public bool ActiveUser(string email, string token)
         {
             var user = GetSingle(email);

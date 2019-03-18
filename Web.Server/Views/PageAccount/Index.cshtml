@@ -10,9 +10,9 @@
 <body>
 
     <div id="vue-container">        
-        <x-account p-welcomemsg="Welcome User"
-                   p-comefromactivelink="@Model.ComeFromActiveLink"
-                   p-useractivecode="@Model.ActiveCode"
+        <x-account p-welcome-msg="Welcome User"
+                   p-come-from-active-link="@Model.ComeFromActiveLink"
+                   p-user-active-codee="@Model.ActiveCode"
                    p-email="@Model.Email">
             @await Html.PartialAsync("nav")
         </x-account>

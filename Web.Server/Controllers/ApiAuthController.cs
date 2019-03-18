@@ -52,6 +52,10 @@ namespace Web.Server.Controllers
 
             if (user.ActiveCode != model.Password)
             {
+                if (_userService.UpdateActiveCode(user.Email))
+                {
+                    //Log that
+                };
                 return Unauthorized(new { msg = "this link is no longer valid, try to send a link again" });
             }
 
@@ -94,6 +98,9 @@ namespace Web.Server.Controllers
         [HttpPost("sendlinkactive")]
         public ActionResult SendLinkActive([FromQuery] string email)
         {
+
+            if (!_userService.UpdateActiveCode(email)) return NotFound();
+
             var user = _userService.GetSingle(email);
 
             if (user == null) return NotFound();
