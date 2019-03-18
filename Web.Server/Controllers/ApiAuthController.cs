@@ -48,11 +48,11 @@ namespace Web.Server.Controllers
 
             var user = _userService.GetSingle(model.Email);
 
-            if (user == null) return BadRequestCustom("Email not found");
+            if (user == null) return BadRequestCustom("Email not found, please sign in");
 
             if (user.ActiveCode != model.Password)
             {
-                return Unauthorized(new { msg = "Email or Password invalid" });
+                return Unauthorized(new { msg = "this link is no longer valid, try to send a link again" });
             }
 
             return _authService.GetAuthData(user);
@@ -107,7 +107,10 @@ namespace Web.Server.Controllers
                 return StatusCode(500, new responseDTO { msg = ex.Message });
             }
 
-            return Ok(string.Format("Email has sent to: {0}", email));
+            return Ok(new
+            {
+                msg = string.Format("Email has sent to: {0}", email)
+            });
         }
 
         private EmailMessage BuildEmailMessage(string name, string email, string activeCode)
