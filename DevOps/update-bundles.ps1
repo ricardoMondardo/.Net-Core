@@ -1,8 +1,8 @@
-cd C:\projects\Search.vuej 
+cd C:\projects\front-end-pages-and-components-vuejs
 
 npm run build:prod
 
-Remove-Item C:\projects\Solution.Net.Core\Web.Server\wwwroot\js\*.*
-Copy-Item -Path C:\projects\Search.vuej\build\*.js -Destination C:\projects\Solution.Net.Core\Web.Server\wwwroot\js -Force
+Remove-Item C:\projects\backend-server-dot-core\Web.Server\wwwroot\js\*.*
+Copy-Item -Path C:\projects\front-end-pages-and-components-vuejs\build\*.js -Destination C:\projects\backend-server-dot-core\Web.Server\wwwroot\js -Force
 
-cd C:\projects\Solution.Net.Core\DevOps
+cd C:\projects\backend-server-dot-core\DevOps
