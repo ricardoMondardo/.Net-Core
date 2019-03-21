@@ -13,5 +13,6 @@ namespace Web.Server.Services.Interface
         string GetContextUserId(ClaimsPrincipal userClaims);
         bool ActiveUser(string email, string token);
         bool UpdateActiveCode(string email);
+        bool UpdatePassword(string email, string pass);       
     }
 }

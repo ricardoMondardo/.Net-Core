@@ -25,7 +25,7 @@ namespace Web.Server.Controllers
         }
 
         [HttpPost("login")]
-        public ActionResult<AuthDataDto> Post([FromBody]LoginDto model)
+        public ActionResult<AuthDataDto> Login([FromBody]LoginDto model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -42,7 +42,7 @@ namespace Web.Server.Controllers
         }
 
         [HttpPost("loginWithActiveCode")]
-        public ActionResult<AuthDataDto> PostWithActiveCode([FromBody]LoginDto model)
+        public ActionResult<AuthDataDto> LoginWithActiveCode([FromBody]LoginDto model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -63,7 +63,7 @@ namespace Web.Server.Controllers
         }
 
         [HttpPost("register")]
-        public ActionResult<AuthDataDto> Post([FromBody]RegisterDto model)
+        public ActionResult<AuthDataDto> Register([FromBody]RegisterDto model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             

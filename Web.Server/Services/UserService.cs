@@ -9,10 +9,13 @@ namespace Web.Server.Services
 {
     public class UserService : IUserService
     {
-        private IUnitOfWork _unitOfWork;
-        public UserService(IUnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IAuthService _authService;
+
+        public UserService(IUnitOfWork unitOfWork, IAuthService authService)
         {
             _unitOfWork = unitOfWork;
+            _authService = authService;
         }
         public void Add(User user)
         {
@@ -75,6 +78,19 @@ namespace Web.Server.Services
         public bool IsUsernameUniq(string username)
         {
             return _unitOfWork.Users.Find(u => u.UserName == username).FirstOrDefault() == null;
+        }
+
+        public bool UpdatePassword(string email, string pass)
+        {
+            var user = GetSingle(email);
+
+            if (user == null) return false;
+
+            user.Password = _authService.HashPassword(pass);
+
+            _unitOfWork.Save();
+
+            return true;
         }
     }
 }

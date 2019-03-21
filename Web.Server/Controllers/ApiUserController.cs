@@ -35,5 +35,26 @@ namespace Web.Server.Controllers
 
             return Ok(userDto);
         }
+
+        [HttpPost("updatepass")]
+        public IActionResult UpdatePass([FromBody] UpdatePass model)
+        {
+            var userID = _userService.GetContextUserId(HttpContext.User);
+            var user = _userService.Get(userID);
+
+            if (!_userService.UpdatePassword(user.Email ,model.Pass)) return NotFound();
+
+            var userDto = new UserDto()
+            {
+                Id = user.Id,
+                Name = user.UserName + "**",
+                Email = user.Email,
+                Active = user.Active
+            };
+
+            return Ok(userDto);
+
+
+        }
     }
 }
