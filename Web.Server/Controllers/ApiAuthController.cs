@@ -85,7 +85,7 @@ namespace Web.Server.Controllers
                         
             try
             {
-                _emailService.SendByRest(BuildEmailMessage(model.Username, model.Email, activeCode));
+                _emailService.SendByRest(BuildEmailMessage(model.Username, model.Email, activeCode, "N"));
             }
             catch (Exception ex)
             {
@@ -96,7 +96,7 @@ namespace Web.Server.Controllers
         }
 
         [HttpPost("sendlinkactive")]
-        public ActionResult SendLinkActive([FromQuery] string email)
+        public ActionResult SendLinkActive([FromQuery] string email, [FromQuery] string forgot)
         {
 
             if (!_userService.UpdateActiveCode(email)) return NotFound();
@@ -107,7 +107,7 @@ namespace Web.Server.Controllers
 
             try
             {
-                _emailService.SendByRest(BuildEmailMessage(email, email, user.ActiveCode));
+                _emailService.SendByRest(BuildEmailMessage(email, email, user.ActiveCode, forgot));
             }
             catch (Exception ex)
             {
@@ -120,10 +120,14 @@ namespace Web.Server.Controllers
             });
         }
 
-        private EmailMessage BuildEmailMessage(string name, string email, string activeCode)
+        private EmailMessage BuildEmailMessage(string name, string email, string activeCode, string isForgot)
         {
             var baseUrl = HttpContext.Request.Host;
-            var link = string.Format("https://{0}/account/active?email={1}&token={2}", baseUrl, email, activeCode);
+            var link = string.Format("https://{0}/account/active?email={1}&token={2}&forgot={3}", 
+                baseUrl, 
+                email, 
+                activeCode, 
+                isForgot ?? "N" );
 
             return new EmailMessage()
             {

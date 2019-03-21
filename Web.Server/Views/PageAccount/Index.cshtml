@@ -12,6 +12,7 @@
     <div id="vue-container">        
         <x-account p-welcome-msg="Welcome User"
                    p-come-from-active-link="@Model.ComeFromActiveLink"
+                   p-come-from-forgot-link="@Model.ComeFromForgotLink"
                    p-user-active-code="@Model.ActiveCode"
                    p-email="@Model.Email">
             @await Html.PartialAsync("nav")

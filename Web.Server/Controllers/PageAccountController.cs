@@ -30,13 +30,14 @@ namespace Web.Server.Controllers
         }
 
         [HttpGet("active")]
-        public IActionResult Active([FromQuery]string email, [FromQuery]string token)
+        public IActionResult Active([FromQuery]string email, [FromQuery]string token, [FromQuery] string forgot)
         {
             var result = _userService.ActiveUser(email, token);
             var model = new UserViewModel() {
                 Email = email,
-                ActiveCode = result ? token : "",
-                ComeFromActiveLink = true
+                ActiveCode = result ? token : "xx",
+                ComeFromActiveLink = forgot == "N" ? true : false,
+                ComeFromForgotLink = forgot == "S" ? true : false
             };
 
             return View("~/views/pageaccount/index.cshtml", model);

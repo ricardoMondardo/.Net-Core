@@ -8,7 +8,8 @@ namespace Web.Server.ViewModel
     public class UserViewModel
     {        
         public bool ComeFromActiveLink { get; set; }
+        public bool ComeFromForgotLink { get; set; }
         public string ActiveCode { get; set; }
-        public string Email { get; set; }
+        public string Email { get; set; }        
     }
 }
