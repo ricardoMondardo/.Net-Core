@@ -10,7 +10,6 @@ namespace Web.EmailSender.Interfaces
     public interface IEmailService
     {
         void Send(EmailMessage emailMessage);
-        Task<HttpStatusCode> SendByRest(EmailMessage emailMessage);
         List<EmailMessage> ReceiveEmail(int maxCount = 10);
     }
 }

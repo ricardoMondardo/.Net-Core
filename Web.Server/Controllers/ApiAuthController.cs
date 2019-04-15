@@ -85,7 +85,7 @@ namespace Web.Server.Controllers
                         
             try
             {
-                _emailService.SendByRest(BuildEmailMessage(model.Username, model.Email, activeCode, "N"));
+                _emailService.Send(BuildEmailMessage(model.Username, model.Email, activeCode, "N"));
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace Web.Server.Controllers
 
             try
             {
-                _emailService.SendByRest(BuildEmailMessage(email, email, user.ActiveCode, forgot));
+                _emailService.Send(BuildEmailMessage(email, email, user.ActiveCode, forgot));
             }
             catch (Exception ex)
             {

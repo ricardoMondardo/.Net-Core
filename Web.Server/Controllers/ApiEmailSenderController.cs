@@ -39,20 +39,6 @@ namespace Web.Server.Controllers
             return Ok();
         }
 
-        [HttpGet("sendEmailTestByRest")]
-        public async Task<ActionResult> SendEmailByRest()
-        {
-            try
-            {
-                return Ok(await _emailService.SendByRest(BuildMessageTest()));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new responseDTO { msg = ex.Message });
-            }
-
-        }
-
         private EmailMessage BuildMessageTest()
         {
             return new EmailMessage()
@@ -60,10 +46,6 @@ namespace Web.Server.Controllers
                 ToAddresses = new List<EmailAddress>()
                 {
                     new EmailAddress() { Name = "Ricardo", Address = "ricardo9300@gmail.com"}
-                },
-                FromAddresses = new List<EmailAddress>()
-                {
-                    new EmailAddress() { Name = "Ricardo", Address = "noreplay@ricardo.com"}
                 },
                 Subject = "Email Test - This should be a subject",
                 Content = "Email Test - This should be a content"
